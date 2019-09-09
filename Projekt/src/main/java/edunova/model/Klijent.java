@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 
 
 /**
- *
+ 
  * @author Marta
  */
 @Entity

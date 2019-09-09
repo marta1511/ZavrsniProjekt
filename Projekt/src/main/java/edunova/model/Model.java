@@ -11,7 +11,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 
 /**
- *
+ 
  * @author Marta
  */@Entity
 public class Model extends Entitet implements Serializable {

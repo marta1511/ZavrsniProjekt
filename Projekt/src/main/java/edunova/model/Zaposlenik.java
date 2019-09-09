@@ -8,7 +8,7 @@ package edunova.model;
 import java.io.Serializable;
 
 /**
- *
+ 
  * @author Marta
  */
 public class Zaposlenik extends Entitet implements Serializable {

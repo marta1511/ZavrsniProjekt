@@ -6,7 +6,7 @@
 package edunova.utility;
 
 /**
- *
+ 
  * @author Marta
  */
 public class EdunovaException extends Exception{

@@ -11,7 +11,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 
 /**
- *
+ 
  * @author Marta
  */
 @Entity

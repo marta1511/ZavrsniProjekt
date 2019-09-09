@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 
 /**
- *
+ 
  * @author Marta
  */
 public class HibernateUtil {
