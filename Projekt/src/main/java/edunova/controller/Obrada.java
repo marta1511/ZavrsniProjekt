@@ -6,6 +6,7 @@
 package edunova.controller;
 
 import edunova.utility.EdunovaException;
+import java.util.List;
 import org.hibernate.Session;
 
 /**
@@ -14,13 +15,14 @@ import org.hibernate.Session;
  */
 public abstract class Obrada <T> {
     
-    protected abstract void KontrolaSpremi()throws EdunovaException;
-    protected abstract void KontrolaBrisi () throws EdunovaException;
+    protected abstract void KontrolaSpremi(T entiet)throws EdunovaException;
+    protected abstract void KontrolaBrisi (T entitet) throws EdunovaException;
+    public abstract List<T> getEntiteti();
     
     protected Session session;
     
     public T spremi (T entitet) throws EdunovaException {
-        KontrolaSpremi();
+        KontrolaSpremi(entitet);
         session.beginTransaction();
         session.save(entitet);
         session.getTransaction().commit();
@@ -28,7 +30,7 @@ public abstract class Obrada <T> {
     }
     
     public void brisi (T entitet)throws EdunovaException{
-        KontrolaBrisi();
+        KontrolaBrisi(entitet);
         session.beginTransaction();
         session.save(entitet);
         session.getTransaction().commit();
