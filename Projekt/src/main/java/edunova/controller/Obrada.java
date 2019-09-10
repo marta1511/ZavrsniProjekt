@@ -5,10 +5,40 @@
  */
 package edunova.controller;
 
+import edunova.utility.EdunovaException;
+import org.hibernate.Session;
+
 /**
  *
  * @author Marta
  */
-public class Obrada {
+public abstract class Obrada <T> {
     
-}
+    protected abstract void KontrolaSpremi()throws EdunovaException;
+    protected abstract void KontrolaBrisi () throws EdunovaException;
+    
+    protected Session session;
+    
+    public T spremi (T entitet) throws EdunovaException {
+        KontrolaSpremi();
+        session.beginTransaction();
+        session.save(entitet);
+        session.getTransaction().commit();
+        return entitet;
+    }
+    
+    public void brisi (T entitet)throws EdunovaException{
+        KontrolaBrisi();
+        session.beginTransaction();
+        session.save(entitet);
+        session.getTransaction().commit();
+    }
+
+    
+      
+    }
+
+  
+    
+    
+
