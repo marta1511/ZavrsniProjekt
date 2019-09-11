@@ -5,6 +5,7 @@
  */
 package edunova.controller;
 
+import edunova.model.Entitet;
 import edunova.model.Zaposlenik;
 import edunova.utility.EdunovaException;
 import java.util.List;
@@ -20,6 +21,7 @@ public class ObradaZaposlenik extends Obrada<Zaposlenik>{
         kontrolaIme(entiet);
         kontrolaPrezime(entiet);
         kontrolaTelefon(entiet);
+        kontrolaOIB(entiet.getOib());
     }
 
     @Override
@@ -52,4 +54,36 @@ public class ObradaZaposlenik extends Obrada<Zaposlenik>{
    
 
      }
+      
+  
+
+   protected void kontrolaOIB(String oib)throws EdunovaException {
+        if (oib.length() != 11){
+            throw new EdunovaException("OIB mora imati 11 znamenaka");
+        }
+            
+
+        try {
+            Long.parseLong(oib);
+        } catch (NumberFormatException e) {
+            throw new EdunovaException("OIB ima znak koji nije brojčani");
+        }
+
+        int a = 10;
+        for (int i = 0; i < 10; i++) {
+            a = a + Integer.parseInt(oib.substring(i, i+1));
+            a = a % 10;
+            if (a == 0)
+                a = 10;
+            a *= 2;
+            a = a % 11;
+        }
+        int kontrolni = 11 - a;
+        if (kontrolni == 10)
+            kontrolni = 0;
+
+        if(kontrolni != Integer.parseInt(oib.substring(10))){
+            throw new EdunovaException("OIB je neispravan");
+        }
+    }
 }

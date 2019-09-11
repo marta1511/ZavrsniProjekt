@@ -6,12 +6,25 @@
 package edunova.controller;
 
 import edunova.model.Operater;
+import edunova.utility.EdunovaException;
 import java.util.List;
+import org.hibernate.SessionFactory;
 
 /**
  *
  * @author Marta
  */
 public class ObradaOperater extends ObradaZaposlenik <Operater>{
+
+  
+       public List<Operater> getEntiteti() {
+        return session.createQuery("from Operater").list();
+    }
+       
+         protected void kontrolaOIB(String oib) throws EdunovaException {
+        
+    }
+
+   
    
 }
