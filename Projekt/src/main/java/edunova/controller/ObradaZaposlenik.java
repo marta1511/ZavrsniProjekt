@@ -47,4 +47,9 @@ public class ObradaZaposlenik extends Obrada<Zaposlenik>{
     }
      
      //još napravit kontorlu za iban
+     private void kontrolaIBAN (Zaposlenik entitet) throws EdunovaException{
+     
+   
+
+     }
 }

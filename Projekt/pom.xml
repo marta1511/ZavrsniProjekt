@@ -24,6 +24,11 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.4.4.Final</version>
         </dependency>
+     <dependency>
+     <groupId>org.iban4j</groupId>
+     <artifactId>iban4j</artifactId>
+     <version>1.0.0</version>
+     </dependency>
 
     </dependencies>
 </project>
