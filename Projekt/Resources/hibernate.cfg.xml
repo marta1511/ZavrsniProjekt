@@ -26,5 +26,13 @@
         <property name="hibernate.dbcp.minIdle">5</property>
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
         <mapping class="net.javaguides.hibernate.entity.Student" />
+         <!-- Ovdje navodimo naše mapirane klase -->
+        <mapping class="edunova.model.Operater" />
+        <mapping class="edunova.model.Zaposlenik" />
+        <mapping class="edunova.model.Klijent" />
+        <mapping class="edunova.model.Vozilo" />
+        <mapping class="edunova.model.Model" />
+         <mapping class="edunova.model.Iznajmljivanje" />
+        
     </session-factory>
 </hibernate-configuration>

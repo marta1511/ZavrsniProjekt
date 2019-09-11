@@ -17,18 +17,30 @@ public class Zaposlenik extends Entitet implements Serializable {
     public String prezime;
     public String iban;
     public String telefon;
+    public String oib;
+
+    public String getOib() {
+        return oib;
+    }
+
+    public void setOib(String oib) {
+        this.oib = oib;
+    }
+    
 
     public Zaposlenik() {
         super();
     }
 
-    public Zaposlenik(Integer sifra, String ime, String prezime, String iban, String telefon) {
+    public Zaposlenik(String ime, String prezime, String iban, String telefon, String oib, Integer sifra) {
         super(sifra);
         this.ime = ime;
         this.prezime = prezime;
         this.iban = iban;
         this.telefon = telefon;
+        this.oib = oib;
     }
+
     
     
 
