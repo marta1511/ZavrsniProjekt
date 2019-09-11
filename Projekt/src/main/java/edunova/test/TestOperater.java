@@ -8,6 +8,7 @@ package edunova.test;
 import edunova.controller.ObradaOperater;
 import edunova.model.Operater;
 import edunova.utility.EdunovaException;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -15,10 +16,13 @@ import edunova.utility.EdunovaException;
  */
 public class TestOperater {
     
-    public static void test (){
-        Operater o= new Operater();
-        o.setIme("Luka");
-        o.setPrezime("Branković");
+   public static void test() {
+        Operater o = new Operater();
+        o.setIme("Tomislav");
+        o.setPrezime("Jakopec");
+        o.setEmail("tjakopec@gmail.com");
+        o.setLozinka(BCrypt.hashpw("t", BCrypt.gensalt()));
+         
        ObradaOperater obrada = new ObradaOperater();
         try {
             o = obrada.spremi(o);

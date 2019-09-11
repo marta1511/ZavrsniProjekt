@@ -6,11 +6,12 @@
 package edunova.controller;
 
 import edunova.model.Operater;
+import java.util.List;
 
 /**
  *
  * @author Marta
  */
-public class ObradaOperater  extends ObradaZaposlenik <Operater>{
-    
+public class ObradaOperater extends ObradaZaposlenik <Operater>{
+   
 }

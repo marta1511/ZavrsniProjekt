@@ -18,6 +18,7 @@ public class Zaposlenik extends Entitet implements Serializable {
     public String iban;
     public String telefon;
     public String oib;
+    public String email;
 
     public String getOib() {
         return oib;
@@ -32,14 +33,25 @@ public class Zaposlenik extends Entitet implements Serializable {
         super();
     }
 
-    public Zaposlenik(String ime, String prezime, String iban, String telefon, String oib, Integer sifra) {
+    public Zaposlenik(String ime, String prezime, String iban, String telefon, String oib, String email, Integer sifra) {
         super(sifra);
         this.ime = ime;
         this.prezime = prezime;
         this.iban = iban;
         this.telefon = telefon;
         this.oib = oib;
+        this.email = email;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+  
 
     
     

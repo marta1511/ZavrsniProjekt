@@ -15,28 +15,39 @@ import javax.persistence.Entity;
 @Entity
 public class Operater extends Zaposlenik implements Serializable {
     
-    private String loinka;
+    private String lozinka;
 
     public Operater() {
         super();
     }
+
+    public String getLozinka() {
+        return lozinka;
+    }
+
+    public void setLozinka(String lozinka) {
+        this.lozinka = lozinka;
+    }
+
+    public Operater(String lozinka, String ime, String prezime, String iban, String telefon, String oib, String email, Integer sifra) {
+        super(ime, prezime, iban, telefon, oib, email, sifra);
+        this.lozinka = lozinka;
+    }
+
+   
+
+  
+   
     
     
 
-    public Operater(String loinka, String ime, String prezime, String iban, String telefon, String oib, Integer sifra) {
-        super(ime, prezime, iban, telefon, oib, sifra);
-        this.loinka = loinka;
-    }
+ 
+    
+
     
     
 
-    public String getLoinka() {
-        return loinka;
-    }
-
-    public void setLoinka(String loinka) {
-        this.loinka = loinka;
-    }
+ 
 
    
     
