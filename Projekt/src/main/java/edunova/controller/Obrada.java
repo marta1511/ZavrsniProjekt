@@ -6,6 +6,7 @@
 package edunova.controller;
 
 import edunova.utility.EdunovaException;
+import edunova.utility.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
 
@@ -20,6 +21,10 @@ public abstract class Obrada <T> {
     public abstract List<T> getEntiteti();
     
     protected Session session;
+    
+    public Obrada() {
+        this.session = HibernateUtil.getSession();
+    }
     
     public T spremi (T entitet) throws EdunovaException {
         KontrolaSpremi(entitet);

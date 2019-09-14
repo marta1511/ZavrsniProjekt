@@ -8,7 +8,6 @@ package edunova.controller;
 import edunova.model.Operater;
 import edunova.utility.EdunovaException;
 import java.util.List;
-import org.hibernate.SessionFactory;
 
 /**
  *
@@ -16,15 +15,13 @@ import org.hibernate.SessionFactory;
  */
 public class ObradaOperater extends ObradaZaposlenik <Operater>{
 
-  
-       public List<Operater> getEntiteti() {
+    @Override
+    public List<Operater> getEntiteti() {
         return session.createQuery("from Operater").list();
     }
-       
-         protected void kontrolaOIB(String oib) throws EdunovaException {
+    @Override
+    protected void kontrolaOIB(String oib) throws EdunovaException {
         
     }
-
-   
-   
+    
 }

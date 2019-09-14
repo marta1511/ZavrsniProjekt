@@ -56,6 +56,7 @@ public class ObradaKlijent extends Obrada <Klijent> {
     
     private void kontrolaTelefon(Klijent entitet) throws EdunovaException{
     if (entitet.getTelefon()== null || entitet.getTelefon().trim().length()==0){
-    throw new EdunovaException("Broj telefona klijenta mora biti unesen");}
+    throw new EdunovaException("Broj telefona klijenta mora biti unesen");
+    } 
     }
 }

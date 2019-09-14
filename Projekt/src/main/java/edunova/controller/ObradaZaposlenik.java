@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Marta
  */
-public class ObradaZaposlenik extends Obrada<Zaposlenik>{
+public abstract class ObradaZaposlenik <T extends Zaposlenik> extends Obrada<T>{
 
     @Override
     protected void KontrolaSpremi(Zaposlenik entiet) throws EdunovaException {
@@ -29,10 +29,7 @@ public class ObradaZaposlenik extends Obrada<Zaposlenik>{
       
     }
 
-    @Override
-    public List<Zaposlenik> getEntiteti() {
-      return session.createQuery("from Zaposlenik").list();
-    }
+   
      private void kontrolaIme (Zaposlenik entitet) throws EdunovaException{
     if(entitet.getIme() == null || entitet.getIme().trim().length()==0){
     throw new EdunovaException("Obavezno unijeti ime zaposlenika");}
