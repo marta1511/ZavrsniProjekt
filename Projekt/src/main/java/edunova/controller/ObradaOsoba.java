@@ -62,16 +62,16 @@ public abstract class ObradaOsoba <T extends Osoba> extends Obrada<T> {
 
      private void kontrolaIme (Osoba entitet) throws EdunovaException{
     if(entitet.getIme() == null || entitet.getIme().trim().length()==0){
-    throw new EdunovaException("Obavezno unijeti ime klijenta");}
+    throw new EdunovaException("Obavezno unijeti ime");}
     }
      private void kontrolaPrezime (Osoba entitet) throws EdunovaException{
     if(entitet.getPrezime()== null || entitet.getPrezime().trim().length()==0){
-    throw new EdunovaException("Obavezno unijeti prezime klijenta");}
+    throw new EdunovaException("Obavezno unijeti prezime");}
     }
      
     private void kontrolaTelefon(Osoba entitet) throws EdunovaException{
     if (entitet.getTelefon()== null || entitet.getTelefon().trim().length()==0){
-    throw new EdunovaException("Broj telefona klijenta mora biti unesen");
+    throw new EdunovaException("Broj telefona  mora biti unesen");
     } 
     }
 }

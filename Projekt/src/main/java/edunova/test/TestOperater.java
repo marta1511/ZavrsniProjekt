@@ -18,10 +18,11 @@ public class TestOperater {
     
     public static void test (){
     Operater o = new Operater();
-    o.setIme("Dino");
-    o.setPrezime("Herceg");
-    o.setEmail("herceg2@gmail.com");
-    o.setLozinka(BCrypt.hashpw("herceg2", BCrypt.gensalt()));
+    o.setIme("Marta");
+    o.setPrezime("Cerovečki");
+    o.setTelefon("099785369");
+    o.setEmail("marta123@gmail.com");
+    o.setLozinka(BCrypt.hashpw("123", BCrypt.gensalt()));
     
         ObradaOperater obrada = new ObradaOperater();
         try {

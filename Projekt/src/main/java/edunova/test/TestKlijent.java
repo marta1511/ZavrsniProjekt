@@ -23,6 +23,8 @@ public class TestKlijent {
      k.setPrezime("Anić");
      k.setBrojVozacke("01234567");
      k.setTelefon("0998745632");
+     k.setOib("93428302730");
+     k.setEmail("luka@gmail.com");
      
          ObradaKlijent obrada = new ObradaKlijent();
          try {
