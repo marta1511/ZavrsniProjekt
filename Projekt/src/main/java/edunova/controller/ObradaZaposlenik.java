@@ -6,81 +6,59 @@
 package edunova.controller;
 
 import edunova.model.Entitet;
+import edunova.model.Klijent;
 import edunova.model.Zaposlenik;
 import edunova.utility.EdunovaException;
 import java.util.List;
+import org.iban4j.IbanFormat;
+import org.iban4j.IbanFormatException;
+import org.iban4j.IbanUtil;
+import org.iban4j.InvalidCheckDigitException;
+import org.iban4j.UnsupportedCountryException;
 
 /**
  *
  * @author Marta
  */
-public abstract class ObradaZaposlenik <T extends Zaposlenik> extends Obrada<T>{
+public class ObradaZaposlenik extends ObradaOsoba<Zaposlenik>{
 
     @Override
-    protected void KontrolaSpremi(Zaposlenik entiet) throws EdunovaException {
-        kontrolaIme(entiet);
-        kontrolaPrezime(entiet);
-        kontrolaTelefon(entiet);
-        kontrolaOIB(entiet.getOib());
+    public List<Zaposlenik> getEntiteti() {
+         return session.createQuery("from Zaposlenik").list();
     }
-
-    @Override
-    protected void KontrolaBrisi(Zaposlenik entitet) throws EdunovaException {
-      
-    }
-
    
-     private void kontrolaIme (Zaposlenik entitet) throws EdunovaException{
-    if(entitet.getIme() == null || entitet.getIme().trim().length()==0){
-    throw new EdunovaException("Obavezno unijeti ime zaposlenika");}
+ @Override
+    protected void kontrolaSpremi(Zaposlenik entitet) throws EdunovaException {
+        super.kontrolaSpremi(entitet); //kontrole ObradaOsoba
+        kontrolaIBAN(entitet.getIban());
+       
     }
-     private void kontrolaPrezime (Zaposlenik entitet) throws EdunovaException{
-    if(entitet.getPrezime()== null || entitet.getPrezime().trim().length()==0){
-    throw new EdunovaException("Obavezno unijeti prezime zaposlenika");
+    
+     @Override
+    protected void kontrolaBrisi(Zaposlenik entitet) throws EdunovaException {
+        super.kontrolaBrisi(entitet); 
     }
-     }
-     private void kontrolaTelefon(Zaposlenik entitet) throws EdunovaException{
-    if (entitet.getTelefon()== null || entitet.getTelefon().trim().length()==0){
-    throw new EdunovaException("Broj telefona mora biti unesen");}
+    
+    protected void kontrolaIBAN(String iban) throws EdunovaException{
+        if (iban.length() > 32){
+            throw new EdunovaException("OIB mora imati manje od 32 znaka");
+        }
+          
+
+      try {
+          IbanUtil.validate(iban);
+          IbanUtil.validate(iban, IbanFormat.Default);
+     // valid
+ } catch (IbanFormatException |
+          InvalidCheckDigitException |
+          UnsupportedCountryException e) {
+     throw new EdunovaException("IBAN nije valjan");
+ }
+    
     
     }
-     
-     //još napravit kontorlu za iban
-     private void kontrolaIBAN (Zaposlenik entitet) throws EdunovaException{
-     
-   
-
-     }
-      
-  
-
-   protected void kontrolaOIB(String oib)throws EdunovaException {
-        if (oib.length() != 11){
-            throw new EdunovaException("OIB mora imati 11 znamenaka");
-        }
-            
-
-        try {
-            Long.parseLong(oib);
-        } catch (NumberFormatException e) {
-            throw new EdunovaException("OIB ima znak koji nije brojčani");
-        }
-
-        int a = 10;
-        for (int i = 0; i < 10; i++) {
-            a = a + Integer.parseInt(oib.substring(i, i+1));
-            a = a % 10;
-            if (a == 0)
-                a = 10;
-            a *= 2;
-            a = a % 11;
-        }
-        int kontrolni = 11 - a;
-        if (kontrolni == 10)
-            kontrolni = 0;
-
-        if(kontrolni != Integer.parseInt(oib.substring(10))){
-            throw new EdunovaException("OIB je neispravan");
-        }
-    }
 }
+      
+
+
+  

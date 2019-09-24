@@ -16,11 +16,11 @@ import java.util.List;
 public class ObradaVozilo extends Obrada <Vozilo> {
 
     @Override
-    protected void KontrolaSpremi(Vozilo entiet) throws EdunovaException {
+    protected void kontrolaSpremi(Vozilo entiet) throws EdunovaException {
             }
 
     @Override
-    protected void KontrolaBrisi(Vozilo entitet) throws EdunovaException {
+    protected void kontrolaBrisi(Vozilo entitet) throws EdunovaException {
         
     }
 

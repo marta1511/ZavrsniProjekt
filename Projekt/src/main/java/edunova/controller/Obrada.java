@@ -16,8 +16,8 @@ import org.hibernate.Session;
  */
 public abstract class Obrada <T> {
     
-    protected abstract void KontrolaSpremi(T entiet)throws EdunovaException;
-    protected abstract void KontrolaBrisi (T entitet) throws EdunovaException;
+    protected abstract void kontrolaSpremi(T entiet)throws EdunovaException;
+    protected abstract void kontrolaBrisi (T entitet) throws EdunovaException;
     public abstract List<T> getEntiteti();
     
     protected Session session;
@@ -27,7 +27,7 @@ public abstract class Obrada <T> {
     }
     
     public T spremi (T entitet) throws EdunovaException {
-        KontrolaSpremi(entitet);
+        kontrolaSpremi(entitet);
         session.beginTransaction();
         session.save(entitet);
         session.getTransaction().commit();
@@ -35,7 +35,7 @@ public abstract class Obrada <T> {
     }
     
     public void brisi (T entitet)throws EdunovaException{
-        KontrolaBrisi(entitet);
+        kontrolaBrisi(entitet);
         session.beginTransaction();
         session.save(entitet);
         session.getTransaction().commit();

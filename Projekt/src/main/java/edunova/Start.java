@@ -6,6 +6,10 @@
 package edunova;
 
 import edunova.test.TestKlijent;
+import edunova.test.TestOperater;
+import edunova.utility.HibernateUtil;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,6 +18,8 @@ import edunova.test.TestKlijent;
 public class Start {
     public static void main(String[] args) {
         
-        TestKlijent.test();
+        HibernateUtil.getSession();
+        //TestKlijent.test();
+        //TestOperater.test();
     }
 }

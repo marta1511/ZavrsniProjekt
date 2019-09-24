@@ -6,88 +6,36 @@
 package edunova.model;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  
  * @author Marta
  */
-public class Zaposlenik extends Entitet implements Serializable {
+@Entity
+public class Zaposlenik extends Osoba implements Serializable {
     
-    public String ime;
-    public String prezime;
+  
     public String iban;
-    public String telefon;
-    public String oib;
-    public String email;
-
-    public String getOib() {
-        return oib;
-    }
-
-    public void setOib(String oib) {
-        this.oib = oib;
-    }
-    
 
     public Zaposlenik() {
         super();
     }
 
-    public Zaposlenik(String ime, String prezime, String iban, String telefon, String oib, String email, Integer sifra) {
-        super(sifra);
-        this.ime = ime;
-        this.prezime = prezime;
+    public Zaposlenik(String iban, String ime, String prezime, String oib, String email, String telefon, Integer sifra) {
+        super(ime, prezime, oib, email, telefon, sifra);
         this.iban = iban;
-        this.telefon = telefon;
-        this.oib = oib;
-        this.email = email;
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-  
-
-    
-    
-
-    public String getIme() {
-        return ime;
-    }
-
-    public void setIme(String ime) {
-        this.ime = ime;
-    }
-
-    public String getPrezime() {
-        return prezime;
-    }
-
-    public void setPrezime(String prezime) {
-        this.prezime = prezime;
-    }
-
-    public String getIban() {
+     public String getIban() {
         return iban;
     }
 
     public void setIban(String iban) {
         this.iban = iban;
     }
+   
 
-    public String getTelefon() {
-        return telefon;
-    }
-
-    public void setTelefon(String telefon) {
-        this.telefon = telefon;
-    }
     
     
-    
+        
 }

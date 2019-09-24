@@ -17,12 +17,12 @@ import java.util.List;
 public class ObradaModel extends Obrada <Model>  {
 
     @Override
-    protected void KontrolaSpremi(Model entiet) throws EdunovaException {
+    protected void kontrolaSpremi(Model entiet) throws EdunovaException {
         
     }
 
     @Override
-    protected void KontrolaBrisi(Model entitet) throws EdunovaException {
+    protected void kontrolaBrisi(Model entitet) throws EdunovaException {
         
     }
 

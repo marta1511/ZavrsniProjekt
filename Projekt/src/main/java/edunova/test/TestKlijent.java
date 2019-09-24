@@ -20,6 +20,9 @@ public class TestKlijent {
      public static void test() {
      Klijent k = new Klijent();
      k.setIme("Luka");
+     k.setPrezime("Anić");
+     k.setBrojVozacke("01234567");
+     k.setTelefon("0998745632");
      
          ObradaKlijent obrada = new ObradaKlijent();
          try {
@@ -30,23 +33,5 @@ public class TestKlijent {
          }
          System.out.println(k.getSifra());
          
-         Klijent zaPromjenu =HibernateUtil.getSession().get(Klijent.class, 1);
-         
-         zaPromjenu.setPrezime(new String("Anić"));
-         try {
-             obrada.spremi(zaPromjenu);
-         } catch (EdunovaException e) {
-             System.out.println(e.getPoruka());
-         }
-          for (Klijent klijent : obrada.getEntiteti()) {
-            System.out.println(klijent.getSifra() + ": "
-                    + klijent.getIme());
-        }
-        try {
-            obrada.brisi(k);
-        } catch (EdunovaException e) {
-            System.out.println(e.getPoruka());
-        }
-
      }
 }

@@ -5,7 +5,7 @@
     <session-factory>
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class">org.mariadb.jdbc.Driver</property>
-         <property name="connection.url">jdbc:mariadb://localhost/renta_a_car_hib?useSSL=false</property>
+         <property name="connection.url">jdbc:mariadb://localhost/rent_a_car_hib?useSSL=false</property>
         <property name="connection.username">edunova</property>
         <property name="connection.password">edunova</property>
         <!-- JDBC connection pool settings ... using built-in test pool -->
@@ -18,6 +18,13 @@
         <!-- Set the current session context -->
         <property name="current_session_context_class">thread</property>
         <!-- Drop and re-create the database schema on startup -->
+        <!-- 
+            validate: validate the schema, makes no changes to the database.
+            update: update the schema.
+            create: creates the schema, destroying previous data.
+            create-drop: drop the schema at the end of the session. 
+            1. puta create, poslije update
+            -->
         <property name="hbm2ddl.auto">update</property>
         <!-- dbcp connection pool configuration -->
         <property name="hibernate.dbcp.initialSize">5</property>
@@ -25,13 +32,11 @@
         <property name="hibernate.dbcp.maxIdle">10</property>
         <property name="hibernate.dbcp.minIdle">5</property>
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
-        <mapping class="net.javaguides.hibernate.entity.Student" />
-         <!-- Ovdje navodimo naše mapirane klase -->
+         <!-- Ovdje navodimo nase mapirane klase -->
         <mapping class="edunova.model.Operater" />
         <mapping class="edunova.model.Zaposlenik" />
         <mapping class="edunova.model.Klijent" />
         <mapping class="edunova.model.Vozilo" />
-        <mapping class="edunova.model.Model" />
          <mapping class="edunova.model.Iznajmljivanje" />
         
     </session-factory>

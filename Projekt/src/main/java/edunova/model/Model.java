@@ -9,11 +9,13 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
 
 /**
  
  * @author Marta
- */@Entity
+ */
+@MappedSuperclass
 public class Model extends Entitet implements Serializable {
     
     private String naziv;

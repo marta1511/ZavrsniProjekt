@@ -13,7 +13,7 @@ import javax.persistence.Entity;
  * @author Marta
  */
 @Entity
-public class Operater extends Zaposlenik implements Serializable {
+public class Operater extends Osoba implements Serializable {
     
     private String lozinka;
 
@@ -29,27 +29,16 @@ public class Operater extends Zaposlenik implements Serializable {
         this.lozinka = lozinka;
     }
 
-    public Operater(String lozinka, String ime, String prezime, String iban, String telefon, String oib, String email, Integer sifra) {
-        super(ime, prezime, iban, telefon, oib, email, sifra);
+    public Operater(String lozinka, String ime, String prezime, String oib, String email, String telefon, Integer sifra) {
+        super(ime, prezime, oib, email, telefon, sifra);
         this.lozinka = lozinka;
     }
+    
+
+}
 
    
 
   
    
-    
-    
-
- 
-    
-
-    
-    
-
- 
-
    
-    
-    
-}

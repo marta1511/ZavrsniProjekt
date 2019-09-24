@@ -16,12 +16,12 @@ import java.util.List;
 public class ObradaIznajmljivanje extends Obrada <Iznajmljivanje> {
 
     @Override
-    protected void KontrolaSpremi(Iznajmljivanje entiet) throws EdunovaException {
+    protected void kontrolaSpremi(Iznajmljivanje entiet) throws EdunovaException {
         
     }
 
     @Override
-    protected void KontrolaBrisi(Iznajmljivanje entitet) throws EdunovaException {
+    protected void kontrolaBrisi(Iznajmljivanje entitet) throws EdunovaException {
         
     }
 

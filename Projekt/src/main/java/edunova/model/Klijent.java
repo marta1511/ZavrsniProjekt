@@ -14,59 +14,22 @@ import javax.persistence.Entity;
  * @author Marta
  */
 @Entity
-public class Klijent extends Entitet implements Serializable{
-    public String ime;
-    public String prezime;
-    public String email;
-    public String telefon;
+public class Klijent extends Osoba implements Serializable{
+ 
     public String brojVozacke;
 
     public Klijent() {
         super();
     }
 
-    public Klijent(Integer sifra, String ime, String prezime, String email, String telefon, String brojVozacke ) {
-        super(sifra);
-        this.ime = ime;
-        this.prezime = prezime;
-        this.email = email;
-        this.telefon = telefon;
+    public Klijent(String brojVozacke, String ime, String prezime, String oib, String email, String telefon, Integer sifra) {
+        super(ime, prezime, oib, email, telefon, sifra);
         this.brojVozacke = brojVozacke;
     }
+
     
     
-
-    public String getIme() {
-        return ime;
-    }
-
-    public void setIme(String ime) {
-        this.ime = ime;
-    }
-
-    public String getPrezime() {
-        return prezime;
-    }
-
-    public void setPrezime(String prezime) {
-        this.prezime = prezime;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefon() {
-        return telefon;
-    }
-
-    public void setTelefon(String telefon) {
-        this.telefon = telefon;
-    }
+    
 
     public String getBrojVozacke() {
         return brojVozacke;
@@ -75,7 +38,6 @@ public class Klijent extends Entitet implements Serializable{
     public void setBrojVozacke(String brojVozacke) {
         this.brojVozacke = brojVozacke;
     }
-    
-    
+
 }
 
