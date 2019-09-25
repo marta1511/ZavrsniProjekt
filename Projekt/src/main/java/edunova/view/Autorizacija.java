@@ -5,6 +5,16 @@
  */
 package edunova.view;
 
+import edunova.controller.ObradaOperater;
+import edunova.model.Operater;
+import edunova.utility.Utility;
+import java.awt.Color;
+import java.awt.event.KeyEvent;
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
+import org.apache.commons.validator.routines.EmailValidator;
+import org.mindrot.jbcrypt.BCrypt;
+
 /**
  *
  * @author Marta
@@ -16,6 +26,11 @@ public class Autorizacija extends javax.swing.JFrame {
      */
     public Autorizacija() {
         initComponents();
+        setTitle(Utility.getNazivAplikacije());
+        if(Utility.isDev()){
+            txtEmail.setText("marta123@gmail.com");
+            pswLozinka.setText("123");
+        }
     }
 
     /**
@@ -27,57 +42,149 @@ public class Autorizacija extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        pswLozinka = new javax.swing.JPasswordField();
+        btnAutoriziraj = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle(" Rent a car APP autorizacija");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Email");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Lozinka");
+
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEmailKeyPressed(evt);
+            }
+        });
+
+        pswLozinka.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pswLozinkaKeyPressed(evt);
+            }
+        });
+
+        btnAutoriziraj.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnAutoriziraj.setText("Autoriziraj");
+        btnAutoriziraj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAutorizirajActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(pswLozinka)
+                    .addComponent(btnAutoriziraj, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pswLozinka, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(btnAutoriziraj, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Autorizacija.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Autorizacija.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Autorizacija.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Autorizacija.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void btnAutorizirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAutorizirajActionPerformed
+        if(txtEmail.getText().trim().length()==0){
+        greska(txtEmail, "Email obavezan");
+        return;
         }
-        //</editor-fold>
+        //factory pattern
+        EmailValidator emailValidator = EmailValidator.getInstance();
+        if(!emailValidator.isValid(txtEmail.getText())){
+            greska(txtEmail,"Obavezan unos valjane email adrese");
+            return;
+        }
+        
+        txtEmail.setBackground(Color.WHITE);
+        txtEmail.setForeground(Color.BLACK);
+        
+        if(pswLozinka.getPassword().length==0){
+            greska(pswLozinka, "Obavezan unos lozinke");
+            return;
+        }
+        
+        pswLozinka.setBackground(Color.WHITE);
+        pswLozinka.setForeground(Color.BLACK);
+        
+        
+       Operater o = new ObradaOperater().
+                getOperater(txtEmail.getText());
+                
+         if(o==null){
+            JOptionPane.showMessageDialog(null, "Nepostojeći email");
+            txtEmail.requestFocus();
+            return;
+        }
+        
+        if(!BCrypt.checkpw(new String(pswLozinka.getPassword()), 
+                o.getLozinka())){
+            JOptionPane.showMessageDialog(null, 
+                    "Kombinacija emaila i lozinke ne odgovaaju");
+            pswLozinka.requestFocus();
+            return;
+        }
+        
+         new Izbornik().setVisible(true);
+            dispose();
+    }//GEN-LAST:event_btnAutorizirajActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Autorizacija().setVisible(true);
-            }
-        });
+    private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            btnAutorizirajActionPerformed(null);
+    }//GEN-LAST:event_txtEmailKeyPressed
     }
+    private void pswLozinkaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pswLozinkaKeyPressed
+        txtEmailKeyPressed(evt);
+    }//GEN-LAST:event_pswLozinkaKeyPressed
+
+    
+   
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAutoriziraj;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPasswordField pswLozinka;
+    private javax.swing.JTextField txtEmail;
     // End of variables declaration//GEN-END:variables
+ 
+    
+    
+    private void greska(JComponent komponenta, String poruka) {
+        JOptionPane.showMessageDialog(null, poruka);
+        komponenta.setBackground(Color.RED);
+        komponenta.setForeground(Color.WHITE);
+        komponenta.requestFocus();
+    }
 }
