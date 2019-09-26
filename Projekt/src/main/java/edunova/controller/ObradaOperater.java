@@ -19,8 +19,12 @@ public class ObradaOperater extends ObradaOsoba<Operater>{
     public List<Operater> getEntiteti() {
         return session.createQuery("from Operater").list();
     }
-    @Override
-    protected void kontrolaOIB(String oib) throws EdunovaException {
+   
+
+    public Operater getOperater(String email) {
+           return (Operater)session.createQuery("from Operater a "
+                + " where a.email=:email ")
+                .setParameter("email", email).uniqueResult();
         
     }
     
