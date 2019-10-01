@@ -40,5 +40,21 @@ public class ObradaModel extends Obrada <Model>  {
         if(entitet.getMarka() == null || entitet.getMarka().trim().length()==0){
         throw new EdunovaException("Marka modela obavezna");}
         }
+        private void kntrolaBrojSjedala(Model entitet) throws EdunovaException{
+        if(entitet.getBrojSjedala() <=0 || entitet.getBrojSjedala() >9){
+        throw new EdunovaException("Broj sjedala mora biti između 1 i 9");
+        }
+        }
+        
+        private void kontrolaVrstaMotora (Model entitet) throws EdunovaException{
+        if(entitet.getVrstaMotora().trim().length() ==0 || entitet.getVrstaMotora() != "Benzin" || entitet.getVrstaMotora() != "Dizel"){
+        throw new EdunovaException("Molim unesite vrstu motora: Benzin ili ");
+        }
+        }
+        private void kontrolaCijenaPoDanu (Model entitet) throws EdunovaException{
+        if (entitet.getCijenaPoDanu() == null  ){
+        throw new EdunovaException("Obavezan unos cijene najma po danu");
+        }
+        }
         
 }
