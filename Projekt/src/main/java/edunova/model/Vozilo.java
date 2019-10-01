@@ -26,8 +26,8 @@ public class Vozilo extends Model implements Serializable{
     
     
 
-    public Vozilo(String registracijaskaOznaka, Date datumRegistracije, String naziv, String marka, String tip, Integer brojSjedala, String vrstaMotora, Boolean automatik, Date godinaProizvodnje, BigDecimal cijenaPoDanu, Integer sifra) {
-        super(naziv, marka, tip, brojSjedala, vrstaMotora, automatik, godinaProizvodnje, cijenaPoDanu, sifra);
+    public Vozilo(String registracijaskaOznaka, Date datumRegistracije, String naziv, String marka,  Integer brojSjedala, String vrstaMotora, Boolean automatik, Date godinaProizvodnje, BigDecimal cijenaPoDanu, Integer sifra) {
+        super(naziv, marka, brojSjedala, vrstaMotora, automatik, godinaProizvodnje, cijenaPoDanu, sifra);
         this.registracijaskaOznaka = registracijaskaOznaka;
         this.datumRegistracije = datumRegistracije;
     }
