@@ -73,5 +73,8 @@ public class Osoba extends Entitet{
     }
 
         
-    
+     @Override
+    public String toString() {
+        return ime + " " + prezime;
+    }
 }

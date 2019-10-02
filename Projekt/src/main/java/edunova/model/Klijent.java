@@ -7,6 +7,7 @@ package edunova.model;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import net.bytebuddy.implementation.ToStringMethod;
 
 
 /**
@@ -38,6 +39,8 @@ public class Klijent extends Osoba implements Serializable{
     public void setBrojVozacke(String brojVozacke) {
         this.brojVozacke = brojVozacke;
     }
+    
+  
 
 }
 

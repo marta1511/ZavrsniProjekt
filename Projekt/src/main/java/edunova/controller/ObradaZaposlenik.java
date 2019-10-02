@@ -30,7 +30,7 @@ public class ObradaZaposlenik extends ObradaOsoba<Zaposlenik>{
  @Override
     protected void kontrolaSpremi(Zaposlenik entitet) throws EdunovaException {
         super.kontrolaSpremi(entitet); //kontrole ObradaOsoba
-        kontrolaIBAN(entitet.getIban());
+        //kontrolaIBAN(entitet.getIban());
        
     }
     
@@ -40,6 +40,7 @@ public class ObradaZaposlenik extends ObradaOsoba<Zaposlenik>{
     }
     
     protected void kontrolaIBAN(String iban) throws EdunovaException{
+        
         if (iban.length() > 32){
             throw new EdunovaException("OIB mora imati manje od 32 znaka");
         }
@@ -51,12 +52,10 @@ public class ObradaZaposlenik extends ObradaOsoba<Zaposlenik>{
      // valid
  } catch (IbanFormatException |
           InvalidCheckDigitException |
-          UnsupportedCountryException e) {
+          UnsupportedCountryException ex) {
      throw new EdunovaException("IBAN nije valjan");
  }
-    
-    
-    }
+}
 }
       
 

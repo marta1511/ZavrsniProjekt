@@ -20,7 +20,7 @@ public class Model extends Entitet implements Serializable {
     
     private String naziv;
     private String marka;
-    private String tip;
+    
     private Integer brojSjedala;
     private String vrstaMotora;
     private Boolean automatik;
@@ -33,11 +33,11 @@ public class Model extends Entitet implements Serializable {
     
     
 
-    public Model(String naziv, String marka, String tip, Integer brojSjedala, String vrstaMotora, Boolean automatik, Date godinaProizvodnje, BigDecimal cijenaPoDanu, Integer sifra) {
+    public Model(String naziv, String marka,  Integer brojSjedala, String vrstaMotora, Boolean automatik, Date godinaProizvodnje, BigDecimal cijenaPoDanu, Integer sifra) {
         super(sifra);
         this.naziv = naziv;
         this.marka = marka;
-        this.tip = tip;
+       
         this.brojSjedala = brojSjedala;
         this.vrstaMotora = vrstaMotora;
         this.automatik = automatik;
@@ -63,13 +63,7 @@ public class Model extends Entitet implements Serializable {
         this.marka = marka;
     }
 
-    public String getTip() {
-        return tip;
-    }
-
-    public void setTip(String tip) {
-        this.tip = tip;
-    }
+   
 
     public Integer getBrojSjedala() {
         return brojSjedala;
@@ -111,5 +105,8 @@ public class Model extends Entitet implements Serializable {
         this.cijenaPoDanu = cijenaPoDanu;
     }
     
-    
+      @Override
+    public String toString() {
+        return naziv;
+    }
 }
