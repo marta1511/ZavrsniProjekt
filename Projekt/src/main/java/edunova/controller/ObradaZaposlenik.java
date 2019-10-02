@@ -30,7 +30,7 @@ public class ObradaZaposlenik extends ObradaOsoba<Zaposlenik>{
  @Override
     protected void kontrolaSpremi(Zaposlenik entitet) throws EdunovaException {
         super.kontrolaSpremi(entitet); //kontrole ObradaOsoba
-        //kontrolaIBAN(entitet.getIban());
+        kontrolaIBAN(entitet.getIban());
        
     }
     
