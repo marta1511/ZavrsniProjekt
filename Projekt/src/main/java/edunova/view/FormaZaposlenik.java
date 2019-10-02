@@ -15,6 +15,11 @@ import edunova.utility.EdunovaException;
 import edunova.utility.Utility;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import org.iban4j.IbanFormat;
+import org.iban4j.IbanFormatException;
+import org.iban4j.IbanUtil;
+import org.iban4j.InvalidCheckDigitException;
+import org.iban4j.UnsupportedCountryException;
 
 /**
  * 
@@ -57,7 +62,7 @@ public class FormaZaposlenik extends ProjektView<Zaposlenik> {
         txtTelefon1 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         txtBrojVozacke1 = new javax.swing.JTextField();
-        lista = new javax.swing.JList<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtIme = new javax.swing.JTextField();
@@ -74,6 +79,8 @@ public class FormaZaposlenik extends ProjektView<Zaposlenik> {
         btnDodaj = new javax.swing.JButton();
         btnPromjeni = new javax.swing.JButton();
         btnObrisi = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lista = new javax.swing.JList<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmFile = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -160,13 +167,6 @@ public class FormaZaposlenik extends ProjektView<Zaposlenik> {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lista.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        lista.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                listaValueChanged(evt);
-            }
-        });
-
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Podaci"));
 
         jLabel2.setText("Ime");
@@ -213,7 +213,9 @@ public class FormaZaposlenik extends ProjektView<Zaposlenik> {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addComponent(jLabel4))
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtIBAN, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23))
@@ -268,6 +270,14 @@ public class FormaZaposlenik extends ProjektView<Zaposlenik> {
             }
         });
 
+        lista.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lista.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listaValueChanged(evt);
+            }
+        });
+        jScrollPane2.setViewportView(lista);
+
         jmFile.setText("File");
 
         jMenuItem1.setText("Izlaz");
@@ -287,13 +297,13 @@ public class FormaZaposlenik extends ProjektView<Zaposlenik> {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lista, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(9, 9, 9)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(142, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnPromjeni, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -304,19 +314,20 @@ public class FormaZaposlenik extends ProjektView<Zaposlenik> {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lista, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDodaj)
                     .addComponent(btnPromjeni)
                     .addComponent(btnObrisi))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -361,12 +372,7 @@ public class FormaZaposlenik extends ProjektView<Zaposlenik> {
             return;
 
         }
-        /*
-        if(s.getVozilo().size()>0){
-            JOptionPane.showMessageDialog(null, "Ne možete obrisati ovo vozilo");
-            return;
-        }
-        */
+     
         if(JOptionPane.showConfirmDialog(
             null, //roditelj, bude null
             "Sigurno obrisati" + z.getIme() + " " + z.getPrezime(), //tijelo dijaloga
@@ -411,6 +417,8 @@ public class FormaZaposlenik extends ProjektView<Zaposlenik> {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenu jmFile;
     private javax.swing.JList<Zaposlenik> lista;
     private javax.swing.JTextField txtBrojVozacke1;
@@ -431,7 +439,7 @@ public class FormaZaposlenik extends ProjektView<Zaposlenik> {
         txtIme.setText(z.getIme());
         txtPrezime.setText(z.getPrezime());
         txtEmail.setText(z.getEmail());
-        txtIBAN.setText(z.getIban());
+        txtIBAN.setText(z.getIban()== null ? "" : z.getIban().toString());
         txtOib.setText(z.getOib());
         txtTelefon.setText(z.getTelefon());
     }
@@ -476,10 +484,13 @@ public class FormaZaposlenik extends ProjektView<Zaposlenik> {
 
  @Override
     protected boolean kontrola(Zaposlenik entitet) {
-        return true;
+       return true;
     }
     
+    
+    
+    }
    
   
-}
+
 
