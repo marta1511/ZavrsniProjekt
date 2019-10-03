@@ -5,6 +5,10 @@
  */
 package edunova.utility;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
 /**
  *
  * @author Marta
@@ -21,5 +25,11 @@ public class Utility {
     
     public static boolean isDev(){
         return true;
+    }
+
+    public static Date convertToDateViaInstant(LocalDate dateToConvert) {
+        return java.util.Date.from(dateToConvert.atStartOfDay()
+          .atZone(ZoneId.systemDefault())
+            .toInstant());
     }
 }
