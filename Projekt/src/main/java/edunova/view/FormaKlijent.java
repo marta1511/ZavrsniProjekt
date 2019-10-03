@@ -62,7 +62,7 @@ public class FormaKlijent extends ProjektView<Klijent> {
         jmFile = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Podaci"));
 
@@ -106,7 +106,7 @@ public class FormaKlijent extends ProjektView<Klijent> {
                     .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtIme, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
+                    .addComponent(txtIme, javax.swing.GroupLayout.Alignment.LEADING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -218,7 +218,7 @@ public class FormaKlijent extends ProjektView<Klijent> {
                     .addComponent(btnDodaj)
                     .addComponent(btnPromjeni)
                     .addComponent(btnObrisi))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
@@ -244,6 +244,7 @@ public class FormaKlijent extends ProjektView<Klijent> {
         }
 
         spremi(k);
+        
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
@@ -253,15 +254,10 @@ public class FormaKlijent extends ProjektView<Klijent> {
             return;
 
         }
-        /*
-        if(s.getVozilo().size()>0){
-            JOptionPane.showMessageDialog(null, "Ne možete obrisati ovo vozilo");
-            return;
-        }
-        */
+   
         if(JOptionPane.showConfirmDialog(
             null, //roditelj, bude null
-            "Sigurno obrisati" + k.getIme() + " " + k.getPrezime(), //tijelo dijaloga
+            "Sigurno obrisati" +" " + k.getIme() + " " + k.getPrezime(), //tijelo dijaloga
             "Brisanje klijenta", // naslov
             JOptionPane.YES_NO_OPTION, //vrsta opcija
             JOptionPane.QUESTION_MESSAGE) //ikona
@@ -285,6 +281,10 @@ public class FormaKlijent extends ProjektView<Klijent> {
         }
           
           Klijent k = lista.getSelectedValue();
+        if(k==null){
+            return;
+        }
+        postaviVrijednosti(k);
           
     }//GEN-LAST:event_listaValueChanged
 
@@ -363,12 +363,15 @@ public class FormaKlijent extends ProjektView<Klijent> {
     @Override
     protected void postaviVrijednosti(Klijent k){
         txtIme.setText(k.getIme());
+      
         txtPrezime.setText(k.getPrezime());
         txtEmail.setText(k.getEmail());
-        txtBrojVozacke.setText(k.getBrojVozacke());
+        txtBrojVozacke.setText(k.getBrojVozacke() == null ? "" : k.getBrojVozacke().toString());
         txtOib.setText(k.getOib());
         txtTelefon.setText(k.getTelefon());
     }
+    
+     
     }
 
  
