@@ -7,9 +7,9 @@ package edunova.view;
 
 
 
-import edunova.controller.ObradaKlijent;
+
 import edunova.controller.ObradaZaposlenik;
-import edunova.model.Klijent;
+
 import edunova.model.Zaposlenik;
 import edunova.utility.EdunovaException;
 import edunova.utility.Utility;
@@ -165,7 +165,7 @@ public class FormaZaposlenik extends ProjektView<Zaposlenik> {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Podaci"));
 
@@ -435,6 +435,7 @@ public class FormaZaposlenik extends ProjektView<Zaposlenik> {
     private javax.swing.JTextField txtTelefon1;
     // End of variables declaration//GEN-END:variables
 
+ @Override
     protected void postaviVrijednosti(Zaposlenik z) {
         txtIme.setText(z.getIme());
         txtPrezime.setText(z.getPrezime());
