@@ -37,7 +37,7 @@ public abstract class Obrada <T> {
     public void brisi (T entitet)throws EdunovaException{
         kontrolaBrisi(entitet);
         session.beginTransaction();
-        session.save(entitet);
+        session.delete(entitet);
         session.getTransaction().commit();
     }
 
