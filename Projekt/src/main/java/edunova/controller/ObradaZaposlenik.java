@@ -5,12 +5,9 @@
  */
 package edunova.controller;
 
-import edunova.model.Entitet;
-import edunova.model.Klijent;
 import edunova.model.Zaposlenik;
 import edunova.utility.EdunovaException;
 import java.util.List;
-import org.iban4j.IbanFormat;
 import org.iban4j.IbanFormatException;
 import org.iban4j.IbanUtil;
 import org.iban4j.InvalidCheckDigitException;
@@ -40,15 +37,15 @@ public class ObradaZaposlenik extends ObradaOsoba<Zaposlenik>{
     }
     
     protected void kontrolaIBAN(String iban) throws EdunovaException{
-        
+        iban.replace(" ", "");
         if (iban.length() > 32){
-            throw new EdunovaException("OIB mora imati manje od 32 znaka");
+            throw new EdunovaException("IBAN mora imati manje od 32 znaka");
         }
           
 
       try {
           IbanUtil.validate(iban);
-          IbanUtil.validate(iban, IbanFormat.Default);
+          //IbanUtil.validate(iban, IbanFormat.Default);
      // valid
  } catch (IbanFormatException |
           InvalidCheckDigitException |
