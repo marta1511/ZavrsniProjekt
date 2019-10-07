@@ -7,15 +7,13 @@ package edunova.view;
 
 import edunova.controller.ObradaModel;
 import edunova.model.Model;
-import edunova.model.Zaposlenik;
+
 import edunova.utility.EdunovaException;
 
 import edunova.utility.Utility;
 import java.math.BigDecimal;
 import java.util.Date;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -326,13 +324,13 @@ public class FormaModel extends ProjektView<Model> {
     @Override
     protected void ucitaj() {
         {
-        DefaultListModel<Model> model = new DefaultListModel<>();
+        DefaultListModel<Model> modeli = new DefaultListModel<>();
         obrada.getEntiteti().forEach(
-                (modeli) -> {
-                    model.addElement(modeli);
+                (model) -> {
+                    modeli.addElement(model);
                 });
 
-        lista.setModel(model);
+        lista.setModel(modeli);
         lista.repaint();
     }
     }
