@@ -9,28 +9,40 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  
  * @author Marta
  */
 @Entity
-public class Vozilo extends Model implements Serializable{
+public class Vozilo extends Entitet implements Serializable{
     
     private String registracijaskaOznaka;
     private Date datumRegistracije;
+    
+    @ManyToOne
+    private Model model;
 
     public Vozilo() {
         super();
     }
-    
-    
 
-    public Vozilo(String registracijaskaOznaka, Date datumRegistracije, String naziv, String marka,  Integer brojSjedala, String vrstaMotora, Boolean automatik, Date godinaProizvodnje, BigDecimal cijenaPoDanu, Integer sifra) {
-        super(naziv, marka, brojSjedala, vrstaMotora, automatik, godinaProizvodnje, cijenaPoDanu, sifra);
+    public Vozilo(String registracijaskaOznaka, Date datumRegistracije, Model model, Integer sifra) {
+        super(sifra);
         this.registracijaskaOznaka = registracijaskaOznaka;
         this.datumRegistracije = datumRegistracije;
+        this.model = model;
     }
+
+    public Model getModel() {
+        return model;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
+    }
+    
     
     
 
