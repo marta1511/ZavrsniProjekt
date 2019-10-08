@@ -40,7 +40,6 @@ public class Izbornik extends javax.swing.JFrame {
         btnVozilo = new javax.swing.JButton();
         btnKlijent = new javax.swing.JButton();
         btnZaposlenik = new javax.swing.JButton();
-        btnModel = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmFile = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -80,8 +79,6 @@ public class Izbornik extends javax.swing.JFrame {
             }
         });
 
-        btnModel.setText("Model");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -95,8 +92,6 @@ public class Izbornik extends javax.swing.JFrame {
                 .addComponent(btnZaposlenik, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnVozilo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnModel, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -107,8 +102,7 @@ public class Izbornik extends javax.swing.JFrame {
                     .addComponent(btnIznajmljivanje)
                     .addComponent(btnKlijent)
                     .addComponent(btnZaposlenik)
-                    .addComponent(btnVozilo)
-                    .addComponent(btnModel))
+                    .addComponent(btnVozilo))
                 .addContainerGap(157, Short.MAX_VALUE))
         );
 
@@ -194,7 +188,6 @@ public class Izbornik extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIznajmljivanje;
     private javax.swing.JButton btnKlijent;
-    private javax.swing.JButton btnModel;
     private javax.swing.JButton btnVozilo;
     private javax.swing.JButton btnZaposlenik;
     private javax.swing.JMenuBar jMenuBar1;

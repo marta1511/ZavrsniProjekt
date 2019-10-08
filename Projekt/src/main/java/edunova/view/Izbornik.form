@@ -96,8 +96,6 @@
                   <Component id="btnZaposlenik" min="-2" pref="95" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btnVozilo" min="-2" pref="87" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnModel" min="-2" pref="96" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -111,7 +109,6 @@
                       <Component id="btnKlijent" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnZaposlenik" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnVozilo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnModel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="157" max="32767" attributes="0"/>
               </Group>
@@ -150,11 +147,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnZaposlenikActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnModel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Model"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
