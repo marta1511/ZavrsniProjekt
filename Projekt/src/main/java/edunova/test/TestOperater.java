@@ -21,6 +21,7 @@ public class TestOperater {
     o.setIme("Marta");
     o.setPrezime("Cerovečki");
     o.setTelefon("099785369");
+    o.setOib("76277407573");
     o.setEmail("marta123@gmail.com");
     o.setLozinka(BCrypt.hashpw("123", BCrypt.gensalt()));
     
