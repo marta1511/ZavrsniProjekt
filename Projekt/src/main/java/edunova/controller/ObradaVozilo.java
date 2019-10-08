@@ -28,6 +28,30 @@ public class ObradaVozilo extends Obrada <Vozilo> {
     public List<Vozilo> getEntiteti() {
         return session.createQuery("from Vozilo").list();
     }
-    
-    
+      private void kontrolaNaziv(Vozilo entitet) throws EdunovaException {
+        if (entitet.getNaziv() == null
+                || entitet.getNaziv().trim().length() == 0) {
+            throw new EdunovaException("Naziv modela je obavezn");
+        }
+}
+        private void kontrolaMarka(Vozilo entitet) throws EdunovaException{
+        if(entitet.getMarka() == null || entitet.getMarka().trim().length()==0){
+        throw new EdunovaException("Marka modela obavezna");}
+        }
+        private void kntrolaBrojSjedala(Vozilo entitet) throws EdunovaException{
+        if(entitet.getBrojSjedala() <=0 || entitet.getBrojSjedala() >9){
+        throw new EdunovaException("Broj sjedala mora biti između 1 i 9");
+        }
+        }
+        
+        private void kontrolaVrstaMotora (Vozilo entitet) throws EdunovaException{
+        if(entitet.getVrstaMotora().trim().length() ==0 || entitet.getVrstaMotora() != "Benzin" || entitet.getVrstaMotora() != "Dizel"){
+        throw new EdunovaException("Molim unesite vrstu motora: Benzin ili ");
+        }
+        }
+        private void kontrolaCijenaPoDanu (Vozilo entitet) throws EdunovaException{
+        if (entitet.getCijenaPoDanu() == null  ){
+        throw new EdunovaException("Obavezan unos cijene najma po danu");
+        }
+        }
 }
