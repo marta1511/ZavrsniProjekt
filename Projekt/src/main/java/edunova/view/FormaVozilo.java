@@ -10,11 +10,14 @@ import com.github.lgooddatepicker.components.DatePickerSettings;
 import edunova.controller.ObradaVozilo;
 
 import edunova.model.Vozilo;
+
 import edunova.utility.EdunovaException;
 import edunova.utility.Utility;
+import java.math.BigDecimal;
+
 import java.util.Date;
 import java.util.Locale;
-import javax.swing.DefaultComboBoxModel;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -72,7 +75,6 @@ public class FormaVozilo extends ProjektView<Vozilo> {
         txtNaziv = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtGodinaProizvodnje1 = new javax.swing.JTextField();
-        jsBrojSjedala = new javax.swing.JSpinner();
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtCijenaPoDanu = new javax.swing.JTextField();
@@ -82,6 +84,7 @@ public class FormaVozilo extends ProjektView<Vozilo> {
         jLabel10 = new javax.swing.JLabel();
         rbtnDa = new javax.swing.JRadioButton();
         rbtnNe = new javax.swing.JRadioButton();
+        jsBrojSjedala = new javax.swing.JSpinner();
         jScrollPane1 = new javax.swing.JScrollPane();
         lista = new javax.swing.JList<>();
         btnDodaj = new javax.swing.JButton();
@@ -109,8 +112,6 @@ public class FormaVozilo extends ProjektView<Vozilo> {
 
         jLabel6.setText("Godina proizvodnje");
 
-        jsBrojSjedala.setModel(new javax.swing.SpinnerNumberModel(5, 0, 30, 1));
-
         jLabel4.setText("Broj sjedala");
 
         jLabel8.setText("Cijena po danu");
@@ -126,6 +127,8 @@ public class FormaVozilo extends ProjektView<Vozilo> {
         rbtnDa.setText("Da");
 
         rbtnNe.setText("Ne");
+
+        jsBrojSjedala.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -167,8 +170,8 @@ public class FormaVozilo extends ProjektView<Vozilo> {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jsBrojSjedala, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jsBrojSjedala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -231,6 +234,12 @@ public class FormaVozilo extends ProjektView<Vozilo> {
                 .addGap(5, 5, 5))
         );
 
+        lista.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lista.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listaValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(lista);
 
         btnDodaj.setText("Dodaj");
@@ -283,9 +292,9 @@ public class FormaVozilo extends ProjektView<Vozilo> {
                 .addComponent(btnDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPromjeni, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnObrisi, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(119, 119, 119))
+                .addGap(131, 131, 131))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,6 +321,9 @@ public class FormaVozilo extends ProjektView<Vozilo> {
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
        Vozilo v = new Vozilo();
           Date d = Utility.convertToDateViaInstant(dpDatumRegistracije.getDate());
+      
+        
+          
 
         spremi(v);
     }//GEN-LAST:event_btnDodajActionPerformed
@@ -335,15 +347,10 @@ public class FormaVozilo extends ProjektView<Vozilo> {
             return;
 
         }
-        /*
-        if(s.getVozilo().size()>0){
-            JOptionPane.showMessageDialog(null, "Ne možete obrisati ovo vozilo");
-            return;
-        }
-        */
+        
         if(JOptionPane.showConfirmDialog(
             null, //roditelj, bude null
-            "Sigurno obrisati" + v.getRegistracijaskaOznaka(), //tijelo dijaloga
+            "Sigurno obrisati" + v.getRegistracijaskaOznaka() +" " + v.getNaziv(), //tijelo dijaloga
             "Brisanje vozila", // naslov
             JOptionPane.YES_NO_OPTION, //vrsta opcija
             JOptionPane.QUESTION_MESSAGE) //ikona
@@ -360,6 +367,18 @@ public class FormaVozilo extends ProjektView<Vozilo> {
 
         ucitaj();
     }//GEN-LAST:event_btnObrisiActionPerformed
+
+    private void listaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaValueChanged
+          if (evt.getValueIsAdjusting()) {
+            return;
+        }
+
+        Vozilo v = lista.getSelectedValue();
+        if(v==null){
+            return;
+        }
+        postaviVrijednosti(v);
+    }//GEN-LAST:event_listaValueChanged
 
     /**
      * @param args the command line arguments
@@ -419,6 +438,34 @@ public class FormaVozilo extends ProjektView<Vozilo> {
             return;
         }
         
+        v.setNaziv(txtNaziv.getText());
+        v.setMarka(txtMarka.getText());
+        v.setRegistracijaskaOznaka(txtRegistracijskaOznaka.getText());
+        v.setCijenaPoDanu(new BigDecimal(txtCijenaPoDanu.getText()));
+         if (dpDatumRegistracije.getDate() != null) {
+            Date d = Utility.convertToDateViaInstant(dpDatumRegistracije.getDate());
+
+            v.setDatumRegistracije(d);
+        }
+          v.setBrojSjedala((Integer) jsBrojSjedala.getValue());
+          
+        if (v.getVrstaMotora().equals(rbtnBenzin.getText())) {
+            rbtnBenzin.setSelected(true);
+        }
+        if (v.getVrstaMotora().equals(rbtnDizel.getText())) {
+            rbtnDizel.setSelected(true);
+       
+        }
+        
+         if (v.getAutomatik().equals(rbtnDa.getText())) {
+            rbtnDa.setSelected(true);
+        }
+        if (v.getAutomatik().equals(rbtnNe.getText())) {
+            rbtnNe.setSelected(true);
+       
+        }
+           
+        
         
           try {
             obrada.spremi(v);
@@ -438,7 +485,33 @@ public class FormaVozilo extends ProjektView<Vozilo> {
     @Override
     protected void postaviVrijednosti(Vozilo v) {
         
-                
+    txtMarka.setText(v.getMarka());
+    txtNaziv.setText(v.getNaziv());
+    txtRegistracijskaOznaka.setText(v.getRegistracijaskaOznaka());
+        if (dpDatumRegistracije.getDate() != null) {
+            Date d = Utility.convertToDateViaInstant(dpDatumRegistracije.getDate());
+
+            v.setDatumRegistracije(d);
+        }
+        if (v.getVrstaMotora().equals(rbtnBenzin.getText())) {
+            rbtnBenzin.setSelected(true);
+        }
+        if (v.getVrstaMotora().equals(rbtnDizel.getText())) {
+            rbtnDizel.setSelected(true);
+       
+        }
+        
+         if (v.getAutomatik().equals(rbtnDa.getText())) {
+            rbtnDa.setSelected(true);
+        }
+        if (v.getAutomatik().equals(rbtnNe.getText())) {
+            rbtnNe.setSelected(true);
+       
+        }
+        txtGodinaProizvodnje1.setText(v.getGodinaProizvodnje()== null ? "" : v.getGodinaProizvodnje());
+       
+        jsBrojSjedala.setValue(v.getBrojSjedala()== null ? "" : (Integer) v.getBrojSjedala());
+      
         
       
     }
