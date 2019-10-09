@@ -21,6 +21,7 @@ import edunova.utility.EdunovaException;
 import edunova.utility.Utility;
 import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -347,8 +348,16 @@ public class FormaIznajmljivanje extends ProjektView<Iznajmljivanje> {
     }
 
     protected void ucitaj() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+           DefaultListModel<Iznajmljivanje> model = new DefaultListModel<>();
+        obrada.getEntiteti().forEach(
+                (iznajmljivanje) -> {
+                    model.addElement(iznajmljivanje);
+                });
+
+        lista.setModel(model);
+        lista.repaint();
     }
+    
 
     @Override
     protected boolean kontrola(Iznajmljivanje entitet) {
