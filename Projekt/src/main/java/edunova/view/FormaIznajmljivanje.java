@@ -6,7 +6,11 @@
 package edunova.view;
 
 
+import com.github.lgooddatepicker.components.DatePickerSettings;
 import edunova.controller.ObradaIznajmljivanje;
+import edunova.controller.ObradaKlijent;
+import edunova.controller.ObradaVozilo;
+import edunova.controller.ObradaZaposlenik;
 import edunova.model.Iznajmljivanje;
 import edunova.model.Klijent;
 import edunova.model.Vozilo;
@@ -15,6 +19,8 @@ import edunova.model.Zaposlenik;
 
 import edunova.utility.EdunovaException;
 import edunova.utility.Utility;
+import java.util.Locale;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,6 +38,16 @@ public class FormaIznajmljivanje extends ProjektView<Iznajmljivanje> {
         initComponents();
         obrada = new ObradaIznajmljivanje();
         setTitle(Utility.getNazivAplikacije() + " Iznajmljivanje ");
+        
+         DatePickerSettings dps = new DatePickerSettings(
+                new Locale("hr", "HR")
+        );
+
+        dps.setFormatForDatesCommonEra("dd.MM.yyyy.");
+        
+        ucitajKlijente();
+        ucitajVozila();
+        ucitajZaposlenike();
         ucitaj();
     }
 
@@ -342,5 +358,48 @@ public class FormaIznajmljivanje extends ProjektView<Iznajmljivanje> {
     @Override
     protected void postaviVrijednosti(Iznajmljivanje entitet) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void ucitajKlijente() {
+        DefaultComboBoxModel<Klijent> m = new DefaultComboBoxModel<>();
+        Klijent k = new Klijent();
+        k.setSifra(0);
+        k.setIme("Odaberite");
+        k.setPrezime("klijenta");
+        m.addElement(k);
+
+        new ObradaKlijent().getEntiteti().forEach((klijent) -> {
+            m.addElement(klijent);
+        });
+        cmbKlijent.setModel(m);
+    }
+
+    private void ucitajVozila() {
+        DefaultComboBoxModel<Vozilo> m = new DefaultComboBoxModel<>();
+        Vozilo vo = new Vozilo();
+        vo.setSifra(0);
+        vo.setRegistracijaskaOznaka("Ništa od navedenog");
+       
+        m.addElement(vo);
+
+        new ObradaVozilo ().getEntiteti().forEach((vozilo) -> {
+            m.addElement(vozilo);
+        });
+        cmbVozilo.setModel(m);
+    }
+
+    private void ucitajZaposlenike() {
+        
+        DefaultComboBoxModel<Zaposlenik> m = new DefaultComboBoxModel<>();
+        Zaposlenik za = new Zaposlenik();
+        za.setSifra(0);
+        za.setIme("Ništa od");
+        za.setPrezime("navedenog");
+        m.addElement(za);
+
+        new ObradaZaposlenik().getEntiteti().forEach((zaposlenik) -> {
+            m.addElement(zaposlenik);
+        });
+        cmbZaposlenik.setModel(m);
     }
 }
