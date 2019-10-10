@@ -7,6 +7,9 @@ package edunova.controller;
 
 import edunova.model.Vozilo;
 import edunova.utility.EdunovaException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -44,9 +47,20 @@ public class ObradaVozilo extends Obrada <Vozilo> {
         }
         }
         
-        private void kontrolaVrstaMotora (Vozilo entitet) throws EdunovaException{
-        if(entitet.getVrstaMotora().trim().length() ==0 || entitet.getVrstaMotora() != "Benzin" || entitet.getVrstaMotora() != "Dizel"){
-        throw new EdunovaException("Molim unesite vrstu motora: Benzin ili ");
+        private void kontrolaDatumRegistracije(Vozilo entitet) throws EdunovaException{
+        if(entitet.getDatumRegistracije()==null) {
+            return;
+        }
+        
+        if(entitet.getDatumRegistracije().after(new Date())){
+            throw new EdunovaException("Datum početka ne može biti nakon danas");
+        }
+        
+        GregorianCalendar c = (GregorianCalendar) Calendar.getInstance();
+        c.setTime(new Date());
+        c.add(Calendar.YEAR, 1);
+        if(entitet.getDatumRegistracije().before(c.getTime())){
+            throw new EdunovaException("Datum registracije ne može biti više od godinu dana od danas");
         }
         }
         private void kontrolaCijenaPoDanu (Vozilo entitet) throws EdunovaException{
