@@ -19,6 +19,7 @@ import edunova.model.Zaposlenik;
 
 import edunova.utility.EdunovaException;
 import edunova.utility.Utility;
+import java.util.Date;
 import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -40,12 +41,16 @@ public class FormaIznajmljivanje extends ProjektView<Iznajmljivanje> {
         obrada = new ObradaIznajmljivanje();
         setTitle(Utility.getNazivAplikacije() + " Iznajmljivanje ");
          btnTrazi.setText("\uD83D\uDD0D");
+         dpDatumPreuzimanja.setDateTimeStrict(Utility.convertToLocalDateViaInstant(new Date()));
+         dpDatumPovratka.setDateTimeStrict(Utility.convertToLocalDateViaInstant(new Date()));
         
          DatePickerSettings dps = new DatePickerSettings(
                 new Locale("hr", "HR")
         );
 
         dps.setFormatForDatesCommonEra("dd.MM.yyyy.");
+        
+         
         
         ucitajKlijente();
         ucitajVozila();
@@ -121,33 +126,35 @@ public class FormaIznajmljivanje extends ProjektView<Iznajmljivanje> {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(dpDatumPovratka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(cmbVozilo, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(33, 33, 33)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(47, 47, 47)
+                                        .addGap(197, 197, 197))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(cmbKlijent, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cmbVozilo, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(23, 23, 23)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmbZaposlenik, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmbZaposlenik, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 54, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbKlijent, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(26, 26, 26)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtUkupanIunosNajma, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtBrojUgovora, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtBrojUgovora, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(dpDatumPreuzimanja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(69, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,6 +211,11 @@ public class FormaIznajmljivanje extends ProjektView<Iznajmljivanje> {
 
         jLabel8.setText("Pregled ugovora");
 
+        lista.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listaValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(lista);
 
         btnTrazi.setText("L");
@@ -240,17 +252,18 @@ public class FormaIznajmljivanje extends ProjektView<Iznajmljivanje> {
                         .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnTrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnPromjeni, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnObrisi, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(106, 106, 106))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -336,9 +349,28 @@ public class FormaIznajmljivanje extends ProjektView<Iznajmljivanje> {
             JOptionPane.showMessageDialog(null,"Minimalno dva znaka");
             return;
         }
-        
+  
+        DefaultListModel<Iznajmljivanje> model = new DefaultListModel<>();
+        obrada.getEntiteti().forEach(
+                (iznajmljivanje) -> {
+                    model.addElement(iznajmljivanje);
+                });
+
+        lista.setModel(model);
+        lista.repaint();
         ucitaj();;
     }//GEN-LAST:event_btnTraziActionPerformed
+
+    private void listaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaValueChanged
+         if (evt.getValueIsAdjusting()) {
+            return;
+        }
+        Iznajmljivanje i = lista.getSelectedValue();
+        if (i == null) {
+            return;
+        }
+        postaviVrijednosti(i);
+    }//GEN-LAST:event_listaValueChanged
 
     /**
      * @param args the command line arguments
@@ -375,7 +407,20 @@ public class FormaIznajmljivanje extends ProjektView<Iznajmljivanje> {
     // End of variables declaration//GEN-END:variables
 
     protected void spremi(Iznajmljivanje i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        i.setKlijent((Klijent) cmbKlijent.getSelectedItem());
+        i.setVozilo((Vozilo) cmbVozilo.getSelectedItem());
+        i.setZaposlenik((Zaposlenik) cmbZaposlenik.getSelectedItem());
+        i.setBrojUgovora(txtBrojUgovora.getText());
+        
+       try {
+            obrada.spremi(i);
+        } catch (EdunovaException ex) {
+            JOptionPane.showMessageDialog(null, ex.getPoruka());
+            return;
+        }
+
+        ucitaj(); 
     }
 
     protected void ucitaj() {
@@ -391,13 +436,20 @@ public class FormaIznajmljivanje extends ProjektView<Iznajmljivanje> {
     
 
     @Override
-    protected boolean kontrola(Iznajmljivanje entitet) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    protected boolean kontrola(Iznajmljivanje i) {
+       return true;
     }
 
     @Override
-    protected void postaviVrijednosti(Iznajmljivanje entitet) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    protected void postaviVrijednosti(Iznajmljivanje i) {
+        txtBrojUgovora.setText(i.getBrojUgovora());
+        dpDatumPreuzimanja.setDateTimeStrict(Utility.convertToLocalDateViaInstant(i.getDatumPreuzimanja()));
+        dpDatumPovratka.setDateTimeStrict(Utility.convertToLocalDateViaInstant(i.getDatumPovratka()));
+        cmbKlijent.setSelectedItem(i.getKlijent());
+        cmbVozilo.setSelectedItem(i.getVozilo());
+        cmbZaposlenik.setSelectedItem(i.getDatumPovratka());
+        
+        
     }
 
     private void ucitajKlijente() {
@@ -418,7 +470,7 @@ public class FormaIznajmljivanje extends ProjektView<Iznajmljivanje> {
         DefaultComboBoxModel<Vozilo> m = new DefaultComboBoxModel<>();
         Vozilo vo = new Vozilo();
         vo.setSifra(0);
-        vo.setRegistracijaskaOznaka("Ništa od navedenog");
+        vo.setRegistracijaskaOznaka("Odaberite vozilo");
        
         m.addElement(vo);
 
