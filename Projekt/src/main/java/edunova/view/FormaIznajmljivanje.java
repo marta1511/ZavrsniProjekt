@@ -345,20 +345,15 @@ public class FormaIznajmljivanje extends ProjektView<Iznajmljivanje> {
 
     private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
 
-  if(txtUvjet.getText().trim().length()<2){
+ if(txtUvjet.getText().trim().length()<2){
             JOptionPane.showMessageDialog(null,"Minimalno dva znaka");
             return;
         }
-  
-        DefaultListModel<Iznajmljivanje> model = new DefaultListModel<>();
-        obrada.getEntiteti().forEach(
-                (iznajmljivanje) -> {
+               DefaultListModel<Iznajmljivanje> model = new DefaultListModel<>();
+        obrada.getBrojUgovora(txtUvjet.getText().trim()).forEach((iznajmljivanje) -> {
                     model.addElement(iznajmljivanje);
                 });
-
         lista.setModel(model);
-        lista.repaint();
-        ucitaj();;
     }//GEN-LAST:event_btnTraziActionPerformed
 
     private void listaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaValueChanged

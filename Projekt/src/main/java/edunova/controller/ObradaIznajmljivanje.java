@@ -6,6 +6,7 @@
 package edunova.controller;
 
 import edunova.model.Iznajmljivanje;
+import edunova.model.Klijent;
 import edunova.utility.EdunovaException;
 import java.util.List;
 
@@ -29,5 +30,11 @@ public class ObradaIznajmljivanje extends Obrada <Iznajmljivanje> {
     public List<Iznajmljivanje> getEntiteti() {
         return session.createQuery("from Iznajmljivanje").list();
     }
-    
+       public List<Iznajmljivanje> getBrojUgovora(String uvjet) {
+        return session.createQuery("from Iznajmljivanje a "
+                + " where a.brojUgovora like :uvjet ")
+                .setParameter("uvjet", "%" + uvjet + "%")
+                .setMaxResults(20)
+                .list();
+    }
 }
