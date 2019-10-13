@@ -35,6 +35,7 @@ public class FormaVozilo extends ProjektView<Vozilo> {
     public FormaVozilo() {
         initComponents();
         obrada = new ObradaVozilo();
+         rbtnDizel.setSelected(true);
         setTitle(Utility.getNazivAplikacije() + " Vozilo ");
         
         
@@ -90,6 +91,9 @@ public class FormaVozilo extends ProjektView<Vozilo> {
         btnDodaj = new javax.swing.JButton();
         btnPromjeni = new javax.swing.JButton();
         btnObrisi = new javax.swing.JButton();
+        txtUvjet = new javax.swing.JTextField();
+        btnTrazi = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmFile = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -263,6 +267,21 @@ public class FormaVozilo extends ProjektView<Vozilo> {
             }
         });
 
+        txtUvjet.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtUvjetKeyReleased(evt);
+            }
+        });
+
+        btnTrazi.setText("L");
+        btnTrazi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraziActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Pregled vozila");
+
         jmFile.setText("File");
 
         jMenuItem1.setText("Izlaz");
@@ -282,8 +301,14 @@ public class FormaVozilo extends ProjektView<Vozilo> {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTrazi))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -300,9 +325,16 @@ public class FormaVozilo extends ProjektView<Vozilo> {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnTrazi)
+                            .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPromjeni)
@@ -320,11 +352,6 @@ public class FormaVozilo extends ProjektView<Vozilo> {
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
        Vozilo v = new Vozilo();
-          Date d = Utility.convertToDateViaInstant(dpDatumRegistracije.getDate());
-      
-        
-          
-
         spremi(v);
     }//GEN-LAST:event_btnDodajActionPerformed
 
@@ -380,6 +407,24 @@ public class FormaVozilo extends ProjektView<Vozilo> {
         postaviVrijednosti(v);
     }//GEN-LAST:event_listaValueChanged
 
+    private void txtUvjetKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUvjetKeyReleased
+
+    }//GEN-LAST:event_txtUvjetKeyReleased
+
+    private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
+
+        if(txtUvjet.getText().trim().length()<2){
+            JOptionPane.showMessageDialog(null,"Minimalno dva znaka");
+            return;
+        }
+        DefaultListModel<Vozilo> model = new DefaultListModel<>();
+        obrada.getVozila(txtUvjet.getText().trim()).forEach((klijent) -> {
+            model.addElement(klijent);
+        });
+        lista.setModel(model);
+
+    }//GEN-LAST:event_btnTraziActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -389,10 +434,12 @@ public class FormaVozilo extends ProjektView<Vozilo> {
     private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPromjeni;
+    private javax.swing.JButton btnTrazi;
     private com.github.lgooddatepicker.components.DatePicker dpDatumRegistracije;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -418,6 +465,7 @@ public class FormaVozilo extends ProjektView<Vozilo> {
     private javax.swing.JTextField txtMarka;
     private javax.swing.JTextField txtNaziv;
     private javax.swing.JTextField txtRegistracijskaOznaka;
+    private javax.swing.JTextField txtUvjet;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -510,7 +558,7 @@ public class FormaVozilo extends ProjektView<Vozilo> {
         }
         txtGodinaProizvodnje1.setText(v.getGodinaProizvodnje()== null ? "" : v.getGodinaProizvodnje());
        
-        jsBrojSjedala.setValue(v.getBrojSjedala()== null ? "" : (Integer) v.getBrojSjedala());
+        jsBrojSjedala.setValue(v.getBrojSjedala()== null ? "" : v.getBrojSjedala());
       
         
       
