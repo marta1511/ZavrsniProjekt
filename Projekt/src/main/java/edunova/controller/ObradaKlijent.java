@@ -14,10 +14,20 @@ import java.util.List;
  * @author Marta
  */
 public class ObradaKlijent extends ObradaOsoba<Klijent> {
+
+   
     
     @Override
     public List<Klijent> getEntiteti() {
          return session.createQuery("from Klijent").list();
+    }
+        public List<Klijent> getKlijent(String uvjet) {
+        return session.createQuery("from Klijent a "
+                + " where a.ime like :uvjet or "
+                + " a.prezime like :uvjet")
+                .setParameter("uvjet", "%" + uvjet + "%")
+                .setMaxResults(20)
+                .list();
     }
 
     @Override
@@ -44,6 +54,8 @@ public class ObradaKlijent extends ObradaOsoba<Klijent> {
             
         }
       }
+
+   
     
     
 }
