@@ -5,6 +5,7 @@
  */
 package edunova.controller;
 
+import edunova.model.Klijent;
 import edunova.model.Zaposlenik;
 import edunova.utility.EdunovaException;
 import java.util.List;
@@ -22,6 +23,14 @@ public class ObradaZaposlenik extends ObradaOsoba<Zaposlenik>{
     @Override
     public List<Zaposlenik> getEntiteti() {
          return session.createQuery("from Zaposlenik").list();
+    }
+       public List<Zaposlenik> getZaposleni(String uvjet) {
+        return session.createQuery("from Zaposlenik a "
+                + " where a.ime like :uvjet or "
+                + " a.prezime like :uvjet")
+                .setParameter("uvjet", "%" + uvjet + "%")
+                .setMaxResults(20)
+                .list();
     }
    
  @Override
