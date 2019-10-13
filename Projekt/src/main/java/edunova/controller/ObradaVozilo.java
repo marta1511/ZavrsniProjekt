@@ -5,6 +5,7 @@
  */
 package edunova.controller;
 
+import edunova.model.Klijent;
 import edunova.model.Vozilo;
 import edunova.utility.EdunovaException;
 import java.util.Calendar;
@@ -30,6 +31,12 @@ public class ObradaVozilo extends Obrada <Vozilo> {
     @Override
     public List<Vozilo> getEntiteti() {
         return session.createQuery("from Vozilo").list();
+    }
+        public List<Vozilo> getVozila(String uvjet) {
+        return session.createQuery("from Vozilo a where a.naziv like :uvjet or a.registracijaskaOznaka like :uvjet")
+                .setParameter("uvjet", "%" + uvjet + "%")
+                .setMaxResults(20)
+                .list();
     }
       private void kontrolaNaziv(Vozilo entitet) throws EdunovaException {
         if (entitet.getNaziv() == null
