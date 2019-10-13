@@ -6,6 +6,7 @@
 package edunova.view;
 
 import edunova.controller.ObradaKlijent;
+import edunova.model.Iznajmljivanje;
 import edunova.model.Klijent;
 import edunova.utility.EdunovaException;
 import edunova.utility.Utility;
@@ -28,6 +29,7 @@ public class FormaKlijent extends ProjektView<Klijent> {
         initComponents();
          obrada = new ObradaKlijent();
         setTitle(Utility.getNazivAplikacije() + " KLijent ");
+        btnTrazi.setText("\uD83D\uDD0D");
         ucitaj();
     }
 
@@ -58,6 +60,8 @@ public class FormaKlijent extends ProjektView<Klijent> {
         btnObrisi = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lista = new javax.swing.JList<>();
+        btnTrazi = new javax.swing.JButton();
+        txtUvjet = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmFile = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -173,6 +177,19 @@ public class FormaKlijent extends ProjektView<Klijent> {
         });
         jScrollPane1.setViewportView(lista);
 
+        btnTrazi.setText("L");
+        btnTrazi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraziActionPerformed(evt);
+            }
+        });
+
+        txtUvjet.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtUvjetKeyReleased(evt);
+            }
+        });
+
         jmFile.setText("File");
 
         jMenuItem1.setText("Izlaz");
@@ -193,7 +210,12 @@ public class FormaKlijent extends ProjektView<Klijent> {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTrazi))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -210,10 +232,17 @@ public class FormaKlijent extends ProjektView<Klijent> {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnTrazi)
+                            .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDodaj)
                     .addComponent(btnPromjeni)
@@ -288,6 +317,28 @@ public class FormaKlijent extends ProjektView<Klijent> {
           
     }//GEN-LAST:event_listaValueChanged
 
+    private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
+
+        if(txtUvjet.getText().trim().length()<2){
+            JOptionPane.showMessageDialog(null,"Minimalno dva znaka");
+            return;
+        }
+               DefaultListModel<Klijent> model = new DefaultListModel<>();
+        obrada.getKlijent(txtUvjet.getText().trim()).forEach((klijent) -> {
+                    model.addElement(klijent);
+                });
+        lista.setModel(model);
+      
+
+        
+
+    }//GEN-LAST:event_btnTraziActionPerformed
+
+    private void txtUvjetKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUvjetKeyReleased
+   
+
+    }//GEN-LAST:event_txtUvjetKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -297,6 +348,7 @@ public class FormaKlijent extends ProjektView<Klijent> {
     private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPromjeni;
+    private javax.swing.JButton btnTrazi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -315,6 +367,7 @@ public class FormaKlijent extends ProjektView<Klijent> {
     private javax.swing.JTextField txtOib;
     private javax.swing.JTextField txtPrezime;
     private javax.swing.JTextField txtTelefon;
+    private javax.swing.JTextField txtUvjet;
     // End of variables declaration//GEN-END:variables
 
     @Override
