@@ -39,6 +39,8 @@ public class Utility {
     }
  
 
-   
+    public static Date convertToDateViaSqlTimestamp(LocalDateTime dateToConvert) {
+        return java.sql.Timestamp.valueOf(dateToConvert);
+    }
   
 }
