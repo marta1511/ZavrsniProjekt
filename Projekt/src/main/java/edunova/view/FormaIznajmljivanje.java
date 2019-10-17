@@ -407,6 +407,18 @@ public class FormaIznajmljivanje extends ProjektView<Iznajmljivanje> {
         i.setVozilo((Vozilo) cmbVozilo.getSelectedItem());
         i.setZaposlenik((Zaposlenik) cmbZaposlenik.getSelectedItem());
         i.setBrojUgovora(txtBrojUgovora.getText());
+         if (dpDatumPreuzimanja.getDatePicker()!= null) {
+            Date d;
+            d = Utility.convertToDateViaSqlTimestamp(dpDatumPreuzimanja.getDateTimeStrict());
+
+            i.setDatumPreuzimanja(d);
+         }
+             if (dpDatumPovratka.getDatePicker()!= null) {
+            Date d;
+            d = Utility.convertToDateViaSqlTimestamp(dpDatumPovratka.getDateTimeStrict());
+
+            i.setDatumPovratka(d);
+         }
         
        try {
             obrada.spremi(i);
@@ -437,7 +449,7 @@ public class FormaIznajmljivanje extends ProjektView<Iznajmljivanje> {
 
     @Override
     protected void postaviVrijednosti(Iznajmljivanje i) {
-        txtBrojUgovora.setText(i.getBrojUgovora());
+        txtBrojUgovora.setText(i.getBrojUgovora()== null ? "" : i.getBrojUgovora());
         dpDatumPreuzimanja.setDateTimeStrict(Utility.convertToLocalDateViaInstant(i.getDatumPreuzimanja()));
         dpDatumPovratka.setDateTimeStrict(Utility.convertToLocalDateViaInstant(i.getDatumPovratka()));
         cmbKlijent.setSelectedItem(i.getKlijent());
