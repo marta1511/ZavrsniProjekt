@@ -58,11 +58,7 @@ public class ObradaVozilo extends Obrada <Vozilo> {
         if(entitet.getDatumRegistracije()==null) {
             return;
         }
-        
-        if(entitet.getDatumRegistracije().after(new Date())){
-            throw new EdunovaException("Datum početka ne može biti nakon danas");
-        }
-        
+         
         GregorianCalendar c = (GregorianCalendar) Calendar.getInstance();
         c.setTime(new Date());
         c.add(Calendar.YEAR, 1);
