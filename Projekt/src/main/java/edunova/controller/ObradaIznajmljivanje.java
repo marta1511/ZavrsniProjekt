@@ -7,7 +7,11 @@ package edunova.controller;
 
 import edunova.model.Iznajmljivanje;
 import edunova.model.Klijent;
+import edunova.model.Vozilo;
 import edunova.utility.EdunovaException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -37,4 +41,35 @@ public class ObradaIznajmljivanje extends Obrada <Iznajmljivanje> {
                 .setMaxResults(20)
                 .list();
     }
+       
+         private void kontrolaDatumPreuzimanja(Iznajmljivanje entitet) throws EdunovaException{
+        if(entitet.getDatumPreuzimanja()==null) {
+            return;
+        }
+         if(entitet.getDatumPreuzimanja().before(new Date())){
+            throw new EdunovaException("Datum početka najma ne može biti prije danas");
+        }
+        
+        GregorianCalendar c = (GregorianCalendar) Calendar.getInstance();
+        c.setTime(new Date());
+        c.add(Calendar.YEAR, 1);
+        if(entitet.getDatumPreuzimanja().after(c.getTime())){
+            throw new EdunovaException("Datum početka najma ne može biti nakon jedne godine od danas");
+        }
+}
+          private void kontrolaDatumPovratka(Iznajmljivanje entitet) throws EdunovaException{
+        if(entitet.getDatumPovratka()==null) {
+            return;
+        }
+         if(entitet.getDatumPovratka().before(new Date())){
+            throw new EdunovaException("Datum povratka vozila ne može biti prije danas");
+        }
+          GregorianCalendar c = (GregorianCalendar) Calendar.getInstance();
+        c.setTime(new Date());
+        c.add(Calendar.MONTH, 1);
+        if(entitet.getDatumPreuzimanja().after(c.getTime())){
+            throw new EdunovaException("Datum povratka vozila može biti maximalno mjesec dana od danas");
+        }
+
+          }
 }
