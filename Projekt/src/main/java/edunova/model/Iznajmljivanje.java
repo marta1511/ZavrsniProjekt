@@ -103,5 +103,41 @@ public class Iznajmljivanje extends Entitet implements Serializable {
         this.zaposlenik = zaposlenik;
     }
      
+     public BigDecimal getIznos(){
+        BigDecimal iznos = BigDecimal.ZERO;
+       
+        if(datumPreuzimanja==null || datumPovratka==null
+                || vozilo==null || vozilo.getCijenaPoDanu()==null){
+            return iznos;
+        }
+       
+       
+        if(datumPovratka.getTime()<=datumPreuzimanja.getTime()){
+            return iznos;
+        }
+       
+        long diffTime = datumPovratka.getTime() - datumPreuzimanja.getTime();
+       
+        long diffDays = diffTime / (1000 * 60 * 60 * 24); 
+        
+        if (datumPovratka.getTime() == datumPreuzimanja.getTime() || diffDays < 1){
+        
+         
+        diffDays = +1;
+        
+        }
+        else diffDays = diffTime / (1000 * 60 * 60 * 24);
+        
+        
+            return vozilo.getCijenaPoDanu().multiply(new BigDecimal(diffDays));
+      
+    
+    
+     } 
      
+     
+     @Override
+     public String tostString(){
+     return brojUgovora + " " + vozilo;
+     }
 }
