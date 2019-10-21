@@ -40,6 +40,8 @@ public class FormaVozilo extends ProjektView<Vozilo> {
        
         setTitle(Utility.getNazivAplikacije() + " Vozilo ");
         
+        
+        
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
         
         DatePickerSettings dps = new DatePickerSettings(
@@ -49,10 +51,8 @@ public class FormaVozilo extends ProjektView<Vozilo> {
         
         
         dps.setFormatForDatesCommonEra("dd.MM.yyyy.");
-        
-       
-        
-        dpDatumRegistracije.setSettings(dps);
+
+        //dpDatumRegistracije.setSettings(dps);
        
         ucitaj();
        
@@ -381,7 +381,7 @@ public class FormaVozilo extends ProjektView<Vozilo> {
         
         if(JOptionPane.showConfirmDialog(
             null, //roditelj, bude null
-            "Sigurno obrisati" + v.getRegistracijaskaOznaka() +" " + v.getNaziv(), //tijelo dijaloga
+            "Sigurno obrisati" + v.getRegistracijaskaOznaka() + " " + v.getNaziv(), //tijelo dijaloga
             "Brisanje vozila", // naslov
             JOptionPane.YES_NO_OPTION, //vrsta opcija
             JOptionPane.QUESTION_MESSAGE) //ikona
@@ -527,11 +527,9 @@ public class FormaVozilo extends ProjektView<Vozilo> {
     txtMarka.setText(v.getMarka());
     txtNaziv.setText(v.getNaziv());
     txtRegistracijskaOznaka.setText(v.getRegistracijaskaOznaka());
-        if (dpDatumRegistracije.getDate() != null) {
-            Date d = Utility.convertToDateViaInstant(dpDatumRegistracije.getDate());
-
-            v.setDatumRegistracije(d);
-        }
+  
+    dpDatumRegistracije.setDate(Utility.convertToDateViaInstant(v.getDatumRegistracije()));
+        
         if (v.getVrstaMotora().equals(rbtnBenzin.getText())) {
             rbtnBenzin.setSelected(true);
         }
@@ -547,6 +545,7 @@ public class FormaVozilo extends ProjektView<Vozilo> {
             rbtnNe.setSelected(true);
        
         }
+        txtCijenaPoDanu.setText(v.getCijenaPoDanu()== null ? "" : v.getCijenaPoDanu().toString());
         txtGodinaProizvodnje1.setText(v.getGodinaProizvodnje()== null ? "" : v.getGodinaProizvodnje().toString());
        
         jsBrojSjedala.setValue(v.getBrojSjedala()== null ? "" : v.getBrojSjedala());
