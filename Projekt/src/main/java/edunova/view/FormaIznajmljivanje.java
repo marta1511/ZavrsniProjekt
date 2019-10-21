@@ -19,6 +19,7 @@ import edunova.model.Zaposlenik;
 
 import edunova.utility.EdunovaException;
 import edunova.utility.Utility;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
@@ -325,7 +326,7 @@ public class FormaIznajmljivanje extends ProjektView<Iznajmljivanje> {
 
         if(JOptionPane.showConfirmDialog(
             null, //roditelj, bude null
-            "Sigurno obrisati" +" " + i.getBrojUgovora(), //tijelo dijaloga
+            "Sigurno obrisati" +" " + i.getBrojUgovora() + " " + i.getVozilo(), //tijelo dijaloga
             "Brisanje najma automobila", // naslov
             JOptionPane.YES_NO_OPTION, //vrsta opcija
             JOptionPane.QUESTION_MESSAGE) //ikona
@@ -455,6 +456,7 @@ public class FormaIznajmljivanje extends ProjektView<Iznajmljivanje> {
         cmbKlijent.setSelectedItem(i.getKlijent());
         cmbVozilo.setSelectedItem(i.getVozilo());
         cmbZaposlenik.setSelectedItem(i.getDatumPovratka());
+      
         
         
     }
@@ -501,4 +503,6 @@ public class FormaIznajmljivanje extends ProjektView<Iznajmljivanje> {
         });
         cmbZaposlenik.setModel(m);
     }
+    
+    
 }
