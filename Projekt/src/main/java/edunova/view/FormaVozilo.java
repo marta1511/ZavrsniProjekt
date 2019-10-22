@@ -505,9 +505,13 @@ public class FormaVozilo extends ProjektView<Vozilo> {
          
           v.setBrojSjedala((Integer) jsBrojSjedala.getValue());
           
-      
-           v.setAutomatik(rbtnDa.isSelected());
-        
+       
+        if(rbtnBenzin.isSelected()){
+            v.setVrstaMotora(rbtnBenzin.getText());
+        }
+        if(rbtnDizel.isSelected()){
+            v.setVrstaMotora(rbtnDizel.getText());
+        }
         
           try {
             obrada.spremi(v);
@@ -530,18 +534,24 @@ public class FormaVozilo extends ProjektView<Vozilo> {
     txtMarka.setText(v.getMarka());
     txtNaziv.setText(v.getNaziv());
     txtRegistracijskaOznaka.setText(v.getRegistracijaskaOznaka());
+     txtCijenaPoDanu.setText(v.getCijenaPoDanu().toString());
+     txtGodinaProizvodnje1.setText(v.getGodinaProizvodnje().toString());
+       
+    jsBrojSjedala.setValue(v.getBrojSjedala()== null ? "" : v.getBrojSjedala());
   
     dpDatumRegistracije.setDate(Utility.convertToLocalDateViaInstant(v.getDatumRegistracije()));
+    
         if(v.getVrstaMotora()!=null){
             if (v.getVrstaMotora().equals(rbtnBenzin.getText())) {
             rbtnBenzin.setSelected(true);
         }
-        if (v.getVrstaMotora().equals(rbtnDizel.getText())) {
+        if (v.getVrstaMotora().equals(rbtnDizel.getText())){
             rbtnDizel.setSelected(true);
        
         } 
         }
        
+      
         
          if (v.getAutomatik()) {
             rbtnDa.setSelected(true);
@@ -551,10 +561,7 @@ public class FormaVozilo extends ProjektView<Vozilo> {
             rbtnDa.setSelected(false);
        
         }
-        txtCijenaPoDanu.setText(v.getCijenaPoDanu()== null ? "" : v.getCijenaPoDanu().toString());
-        txtGodinaProizvodnje1.setText(v.getGodinaProizvodnje()== null ? "" : v.getGodinaProizvodnje().toString());
        
-        jsBrojSjedala.setValue(v.getBrojSjedala()== null ? "" : v.getBrojSjedala());
       
         
       
