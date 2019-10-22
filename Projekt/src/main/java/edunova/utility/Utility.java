@@ -34,7 +34,11 @@ public class Utility {
             .toInstant());
     }
 
-    public static LocalDateTime convertToLocalDateViaInstant(Date dateToConvert) {
+      public static LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+         return dateToConvert.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+    
+    public static LocalDateTime convertToLocalDateTimeViaInstant(Date dateToConvert) {
          return dateToConvert.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
  

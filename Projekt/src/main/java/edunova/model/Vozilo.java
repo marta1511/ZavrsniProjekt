@@ -126,6 +126,6 @@ public class Vozilo extends Entitet implements Serializable{
     
      @Override
     public String toString() {
-        return naziv;
+        return marka + " " + naziv + ", " + registracijaskaOznaka ;
 }
 }

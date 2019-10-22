@@ -24,6 +24,6 @@ public class Start {
         //TestKlijent.test();
         //TestOperater.test();
        
-        new SplashScreen().setVisible(true);
+       new SplashScreen().setVisible(true);
     }
 }

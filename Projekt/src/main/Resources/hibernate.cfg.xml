@@ -4,8 +4,12 @@
 <hibernate-configuration>
     <session-factory>
         <!-- JDBC Database connection settings -->
+         <!-- prvo kreirati bazu
+            create database rentACar_hib 
+                character set utf8 collate utf8_general_ci;
+        -->
         <property name="connection.driver_class">org.mariadb.jdbc.Driver</property>
-         <property name="connection.url">jdbc:mariadb://localhost/rent_a_car_hib?useSSL=false</property>
+         <property name="connection.url">jdbc:mariadb://localhost/rentACar_hib?useSSL=false</property>
         <property name="connection.username">edunova</property>
         <property name="connection.password">edunova</property>
         <!-- JDBC connection pool settings ... using built-in test pool -->
@@ -38,6 +42,8 @@
         <mapping class="edunova.model.Klijent" />
         <mapping class="edunova.model.Vozilo" />
          <mapping class="edunova.model.Iznajmljivanje" />
+         
+         
         
     </session-factory>
 </hibernate-configuration>

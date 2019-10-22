@@ -15,6 +15,8 @@ import edunova.utility.EdunovaException;
 import edunova.utility.Utility;
 import java.math.BigDecimal;
 import java.text.DateFormat;
+import java.text.FieldPosition;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 
 import java.util.Date;
@@ -338,7 +340,7 @@ public class FormaVozilo extends ProjektView<Vozilo> {
                             .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPromjeni)
                     .addComponent(btnDodaj)
@@ -472,6 +474,7 @@ public class FormaVozilo extends ProjektView<Vozilo> {
     private javax.swing.JTextField txtUvjet;
     // End of variables declaration//GEN-END:variables
 
+   
     @Override
     protected void ucitaj() {
         DefaultListModel<Vozilo> model = new DefaultListModel<>();
@@ -503,7 +506,7 @@ public class FormaVozilo extends ProjektView<Vozilo> {
           v.setBrojSjedala((Integer) jsBrojSjedala.getValue());
           
       
-           
+           v.setAutomatik(rbtnDa.isSelected());
         
         
           try {
@@ -528,21 +531,24 @@ public class FormaVozilo extends ProjektView<Vozilo> {
     txtNaziv.setText(v.getNaziv());
     txtRegistracijskaOznaka.setText(v.getRegistracijaskaOznaka());
   
-    dpDatumRegistracije.setDate(Utility.convertToDateViaInstant(v.getDatumRegistracije()));
-        
-        if (v.getVrstaMotora().equals(rbtnBenzin.getText())) {
+    dpDatumRegistracije.setDate(Utility.convertToLocalDateViaInstant(v.getDatumRegistracije()));
+        if(v.getVrstaMotora()!=null){
+            if (v.getVrstaMotora().equals(rbtnBenzin.getText())) {
             rbtnBenzin.setSelected(true);
         }
         if (v.getVrstaMotora().equals(rbtnDizel.getText())) {
             rbtnDizel.setSelected(true);
        
+        } 
         }
+       
         
-         if (v.getAutomatik().equals(rbtnDa.getText())) {
+         if (v.getAutomatik()) {
             rbtnDa.setSelected(true);
-        }
-        if (v.getAutomatik().equals(rbtnNe.getText())) {
+            rbtnNe.setSelected(false);
+        }else {
             rbtnNe.setSelected(true);
+            rbtnDa.setSelected(false);
        
         }
         txtCijenaPoDanu.setText(v.getCijenaPoDanu()== null ? "" : v.getCijenaPoDanu().toString());

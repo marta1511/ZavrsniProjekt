@@ -72,4 +72,6 @@ public class ObradaIznajmljivanje extends Obrada <Iznajmljivanje> {
         }
 
           }
+ 
+         
 }

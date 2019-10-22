@@ -39,7 +39,7 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="pswLozinka" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnAutoriziraj" alignment="1" pref="187" max="32767" attributes="0"/>
+                  <Component id="btnAutoriziraj" alignment="1" pref="268" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -58,7 +58,7 @@
               <Component id="pswLozinka" min="-2" pref="34" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Component id="btnAutoriziraj" min="-2" pref="53" max="-2" attributes="0"/>
-              <EmptySpace pref="29" max="32767" attributes="0"/>
+              <EmptySpace pref="32" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

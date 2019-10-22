@@ -137,7 +137,7 @@ public class Iznajmljivanje extends Entitet implements Serializable {
      
      
      @Override
-     public String tostString(){
+     public String toString(){
      return brojUgovora + " " + vozilo;
      }
 }
