@@ -18,6 +18,8 @@ import java.text.DateFormat;
 import java.text.FieldPosition;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import java.util.Date;
 import java.util.Locale;
@@ -42,7 +44,7 @@ public class FormaVozilo extends ProjektView<Vozilo> {
        
         setTitle(Utility.getNazivAplikacije() + " Vozilo ");
         
-        
+     
         
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
         
@@ -497,8 +499,9 @@ public class FormaVozilo extends ProjektView<Vozilo> {
         v.setMarka(txtMarka.getText());
         v.setRegistracijaskaOznaka(txtRegistracijskaOznaka.getText());
         v.setCijenaPoDanu(new BigDecimal(txtCijenaPoDanu.getText()));
-         if (dpDatumRegistracije.getDate() != null) {
-            Date d = Utility.convertToDateViaInstant(dpDatumRegistracije.getDate());
+        
+          if (dpDatumRegistracije.getDate() != null) {
+           Date d = Utility.convertToDateViaInstant(dpDatumRegistracije.getDate());
 
             v.setDatumRegistracije(d);
         }
@@ -540,6 +543,7 @@ public class FormaVozilo extends ProjektView<Vozilo> {
     jsBrojSjedala.setValue(v.getBrojSjedala()== null ? "" : v.getBrojSjedala());
   
     dpDatumRegistracije.setDate(Utility.convertToLocalDateViaInstant(v.getDatumRegistracije()));
+    
     
         if(v.getVrstaMotora()!=null){
             if (v.getVrstaMotora().equals(rbtnBenzin.getText())) {

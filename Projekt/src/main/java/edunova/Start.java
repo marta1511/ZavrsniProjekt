@@ -5,6 +5,7 @@
  */
 package edunova;
 
+import edunova.test.PocetniInsert;
 import edunova.test.TestKlijent;
 import edunova.test.TestOperater;
 import edunova.test.TestZaposlenik;
@@ -23,7 +24,7 @@ public class Start {
         //HibernateUtil.getSession();
         //TestKlijent.test();
         //TestOperater.test();
-       
+       //PocetniInsert.unesi();
        new SplashScreen().setVisible(true);
     }
 }
