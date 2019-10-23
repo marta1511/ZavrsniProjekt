@@ -21,6 +21,12 @@ public class ObradaVozilo extends Obrada <Vozilo> {
 
     @Override
     protected void kontrolaSpremi(Vozilo entiet) throws EdunovaException {
+        kontrolaCijenaPoDanu(entiet);
+        kontrolaNaziv(entiet);
+        kontrolaDatumRegistracije(entiet);
+        kontrolaMarka(entiet);
+        kontrolaBrojSjedala(entiet);
+        
             }
 
     @Override
@@ -48,7 +54,7 @@ public class ObradaVozilo extends Obrada <Vozilo> {
         if(entitet.getMarka() == null || entitet.getMarka().trim().length()==0){
         throw new EdunovaException("Marka modela obavezna");}
         }
-        private void kntrolaBrojSjedala(Vozilo entitet) throws EdunovaException{
+        private void kontrolaBrojSjedala(Vozilo entitet) throws EdunovaException{
         if(entitet.getBrojSjedala() <=0 || entitet.getBrojSjedala() >9){
         throw new EdunovaException("Broj sjedala mora biti između 1 i 9");
         }
@@ -56,15 +62,10 @@ public class ObradaVozilo extends Obrada <Vozilo> {
         
         private void kontrolaDatumRegistracije(Vozilo entitet) throws EdunovaException{
         if(entitet.getDatumRegistracije()==null) {
-            return;
+          throw new EdunovaException("Obavezan unos datuma zadnje registracije vozila");
         }
          
-        GregorianCalendar c = (GregorianCalendar) Calendar.getInstance();
-        c.setTime(new Date());
-        c.add(Calendar.YEAR, 1);
-        if(entitet.getDatumRegistracije().before(c.getTime())){
-            throw new EdunovaException("Datum registracije ne može biti više od godinu dana od danas");
-        }
+        
         }
         private void kontrolaCijenaPoDanu (Vozilo entitet) throws EdunovaException{
         if (entitet.getCijenaPoDanu() == null  ){
