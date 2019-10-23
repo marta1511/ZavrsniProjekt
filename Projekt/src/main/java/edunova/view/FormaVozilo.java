@@ -16,10 +16,11 @@ import edunova.utility.Utility;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.FieldPosition;
+import java.text.Format;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Calendar;
 
 import java.util.Date;
 import java.util.Locale;
@@ -41,13 +42,14 @@ public class FormaVozilo extends ProjektView<Vozilo> {
     public FormaVozilo() {
         initComponents();
         obrada = new ObradaVozilo();
-       
+        rbtnDa.setSelected(true);
+        
         setTitle(Utility.getNazivAplikacije() + " Vozilo ");
         
      
-        
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
-        
+    
+
+       
         DatePickerSettings dps = new DatePickerSettings(
         new Locale("hr","HR")
         );
@@ -84,7 +86,6 @@ public class FormaVozilo extends ProjektView<Vozilo> {
         jLabel3 = new javax.swing.JLabel();
         txtNaziv = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtGodinaProizvodnje1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtCijenaPoDanu = new javax.swing.JTextField();
@@ -95,6 +96,7 @@ public class FormaVozilo extends ProjektView<Vozilo> {
         rbtnDa = new javax.swing.JRadioButton();
         rbtnNe = new javax.swing.JRadioButton();
         jsBrojSjedala = new javax.swing.JSpinner();
+        txtGP = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         lista = new javax.swing.JList<>();
         btnDodaj = new javax.swing.JButton();
@@ -152,20 +154,20 @@ public class FormaVozilo extends ProjektView<Vozilo> {
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtRegistracijskaOznaka, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                                .addComponent(txtMarka, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtGodinaProizvodnje1, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(jLabel9))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(rbtnBenzin, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
-                                    .addComponent(rbtnDizel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtRegistracijskaOznaka, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                                .addComponent(txtMarka)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(7, 7, 7)
+                                    .addComponent(jLabel9))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(rbtnBenzin, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+                                        .addComponent(rbtnDizel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(txtGP, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,16 +217,17 @@ public class FormaVozilo extends ProjektView<Vozilo> {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtGodinaProizvodnje1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCijenaPoDanu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtCijenaPoDanu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtGP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(0, 0, 0)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jsBrojSjedala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -232,10 +235,10 @@ public class FormaVozilo extends ProjektView<Vozilo> {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
                             .addComponent(rbtnDa))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(rbtnNe))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(31, 31, 31)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rbtnDizel)
@@ -342,7 +345,7 @@ public class FormaVozilo extends ProjektView<Vozilo> {
                             .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPromjeni)
                     .addComponent(btnDodaj)
@@ -468,8 +471,8 @@ public class FormaVozilo extends ProjektView<Vozilo> {
     private javax.swing.JRadioButton rbtnDizel;
     private javax.swing.JRadioButton rbtnNe;
     private javax.swing.JTextField txtCijenaPoDanu;
+    private javax.swing.JTextField txtGP;
     private javax.swing.JTextField txtGodinaProizvodnje;
-    private javax.swing.JTextField txtGodinaProizvodnje1;
     private javax.swing.JTextField txtMarka;
     private javax.swing.JTextField txtNaziv;
     private javax.swing.JTextField txtRegistracijskaOznaka;
@@ -491,6 +494,7 @@ public class FormaVozilo extends ProjektView<Vozilo> {
 
     @Override
     protected void spremi(Vozilo v) {
+           SimpleDateFormat sdf = new SimpleDateFormat("yyyy"); 
         if(!kontrola(v)){
             return;
         }
@@ -499,7 +503,11 @@ public class FormaVozilo extends ProjektView<Vozilo> {
         v.setMarka(txtMarka.getText());
         v.setRegistracijaskaOznaka(txtRegistracijskaOznaka.getText());
         v.setCijenaPoDanu(new BigDecimal(txtCijenaPoDanu.getText()));
-        
+        v.setGodinaProizvodnje(txtGP.getText() );
+      //  v.setGodinaProizvodnje(new SimpleDateFormat(txtGP.getText()));
+     
+         
+      
           if (dpDatumRegistracije.getDate() != null) {
            Date d = Utility.convertToDateViaInstant(dpDatumRegistracije.getDate());
 
@@ -537,14 +545,17 @@ public class FormaVozilo extends ProjektView<Vozilo> {
     txtMarka.setText(v.getMarka());
     txtNaziv.setText(v.getNaziv());
     txtRegistracijskaOznaka.setText(v.getRegistracijaskaOznaka());
-     txtCijenaPoDanu.setText(v.getCijenaPoDanu().toString());
-     txtGodinaProizvodnje1.setText(v.getGodinaProizvodnje().toString());
+    txtCijenaPoDanu.setText(v.getCijenaPoDanu().toString());
+    if(v.getGodinaProizvodnje()!=null){
+         txtGP.setText(v.getGodinaProizvodnje());
+    }
+   
        
-    jsBrojSjedala.setValue(v.getBrojSjedala()== null ? "" : v.getBrojSjedala());
+    jsBrojSjedala.setValue(v.getBrojSjedala()== null ? "" :(Integer) v.getBrojSjedala());
   
     dpDatumRegistracije.setDate(Utility.convertToLocalDateViaInstant(v.getDatumRegistracije()));
     
-    
+        System.out.println(dpDatumRegistracije.getDate());
         if(v.getVrstaMotora()!=null){
             if (v.getVrstaMotora().equals(rbtnBenzin.getText())) {
             rbtnBenzin.setSelected(true);
@@ -555,7 +566,6 @@ public class FormaVozilo extends ProjektView<Vozilo> {
         } 
         }
        
-      
         
          if (v.getAutomatik()) {
             rbtnDa.setSelected(true);

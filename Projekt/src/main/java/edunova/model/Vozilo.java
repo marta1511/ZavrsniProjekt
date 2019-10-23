@@ -27,7 +27,7 @@ public class Vozilo extends Entitet implements Serializable{
     private Integer brojSjedala;
     private String vrstaMotora;
     private Boolean automatik;
-    private Date godinaProizvodnje;
+    private String godinaProizvodnje;
     private BigDecimal cijenaPoDanu;
 
     public Vozilo() {
@@ -36,7 +36,7 @@ public class Vozilo extends Entitet implements Serializable{
     
     
 
-    public Vozilo(String registracijaskaOznaka, Date datumRegistracije, String naziv, String marka, Integer brojSjedala, String vrstaMotora, Boolean automatik, Date godinaProizvodnje, BigDecimal cijenaPoDanu, Integer sifra) {
+    public Vozilo(String registracijaskaOznaka, Date datumRegistracije, String naziv, String marka, Integer brojSjedala, String vrstaMotora, Boolean automatik, String godinaProizvodnje, BigDecimal cijenaPoDanu, Integer sifra) {
         super(sifra);
         this.registracijaskaOznaka = registracijaskaOznaka;
         this.datumRegistracije = datumRegistracije;
@@ -108,11 +108,11 @@ public class Vozilo extends Entitet implements Serializable{
         this.automatik = automatik;
     }
 
-    public Date getGodinaProizvodnje() {
+    public String getGodinaProizvodnje() {
         return godinaProizvodnje;
     }
 
-    public void setGodinaProizvodnje(Date godinaProizvodnje) {
+    public void setGodinaProizvodnje(String godinaProizvodnje) {
         this.godinaProizvodnje = godinaProizvodnje;
     }
 

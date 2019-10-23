@@ -65,6 +65,7 @@ public class PocetniInsert {
          v.setAutomatik(false);
          v.setBrojSjedala(5);
          v.setDatumRegistracije(new Date());
+         v.setGodinaProizvodnje("2013");
          
          ObradaVozilo obradaVozilo = new ObradaVozilo();
          try {

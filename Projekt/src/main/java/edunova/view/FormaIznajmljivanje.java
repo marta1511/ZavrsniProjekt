@@ -19,7 +19,6 @@ import edunova.model.Zaposlenik;
 
 import edunova.utility.EdunovaException;
 import edunova.utility.Utility;
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
@@ -416,6 +415,7 @@ public class FormaIznajmljivanje extends ProjektView<Iznajmljivanje> {
         i.setVozilo((Vozilo) cmbVozilo.getSelectedItem());
         i.setZaposlenik((Zaposlenik) cmbZaposlenik.getSelectedItem());
         i.setBrojUgovora(txtBrojUgovora.getText());
+       i.setUkupanIznosNajma(i.getIznos());
          if (dpDatumPreuzimanja.getDatePicker()!= null) {
             Date d;
             d = Utility.convertToDateViaSqlTimestamp(dpDatumPreuzimanja.getDateTimeStrict());
